@@ -1,0 +1,35 @@
+.navbar-dropdown {
+    background: #333; /* ダークテーマの背景色 */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-dropdown .dropdown-item {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.navbar-dropdown .dropdown-item:hover {
+    background: #555; /* ホバー時の背景色変更 */
+}
+
+.navbar-dropdown .preview-icon {
+    margin-right: 10px; /* アイコンとテキストの間隔 */
+}
+
+.navbar-dropdown .preview-item-content {
+    flex-grow: 1;
+}
+
+.navbar-dropdown .preview-subject {
+    font-weight: bold;
+}
+
+.navbar-dropdown .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
