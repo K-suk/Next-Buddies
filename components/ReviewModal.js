@@ -27,7 +27,7 @@ export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) 
         e.preventDefault();
         setLoading(true);
         try {
-            console.log('Submitting rating:', rating); // ここでratingが正しく表示されるか確認
+            // console.log('Submitting rating:', rating); // ここでratingが正しく表示されるか確認
             const newAverageRating = await submitReview(rating);
             onReviewSubmit(newAverageRating);
             // onRequestClose(); // モーダルを閉じる部分を一時的にコメントアウト

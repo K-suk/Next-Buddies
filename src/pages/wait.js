@@ -9,9 +9,9 @@ export default function Wait() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                console.log('Fetching user data...');
+                // console.log('Fetching user data...');
                 const profile = await getProfile(); // getProfile を使用してユーザー情報を取得
-                console.log('User data received:', profile);
+                // console.log('User data received:', profile);
 
                 // ユーザーがマッチング中かどうかをチェック
                 if (profile.cur_matching) {

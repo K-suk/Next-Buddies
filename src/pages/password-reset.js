@@ -25,18 +25,6 @@ export default function PasswordResetRequest() {
     };
 
     return (
-        // <form onSubmit={handleSubmit}>
-        //     <input
-        //         type="email"
-        //         name="email"
-        //         value={email}
-        //         onChange={(e) => setEmail(e.target.value)}
-        //         placeholder="Enter your email"
-        //         required
-        //     />
-        //     <button type="submit">Reset Password</button>
-        //     {message && <p>{message}</p>}
-        // </form>
         <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%);' }}>
             <div className="container" style={{ marginTop: '130px' }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">

@@ -10,7 +10,6 @@ export default function Login() {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -20,14 +19,26 @@ export default function Login() {
         setLoading(true);
         try {
             const response = await login(formData.email, formData.password);
-            setMessage('Login successful! Redirecting...');
-            router.push('/home');
+    
+            // レスポンス内容をログに出力して確認
+            // console.log('Login Response:', response);
+    
+            // accessトークンが存在するか確認し、存在しない場合はエラーメッセージを表示
+            if (response && response.access) {
+                localStorage.setItem('access_token', response.access); // ログイン成功時にaccessトークンを保存
+                localStorage.setItem('refresh_token', response.refresh); // refreshトークンも保存
+                setMessage('Login Success: Redirecting to home...')
+                router.push('/home'); // ログイン成功時にhomeページにリダイレクト
+            } else {
+                setMessage('Login failed: Token not received.');
+                console.error('Login failed: Token not received.');
+            }
         } catch (error) {
             console.error('Login Error:', error.response ? error.response.data : error.message);
             setMessage('Login failed. Please try again.');
         }
         setLoading(false);
-    };
+    };    
 
     const handlePasswordReset = () => {
         router.push('/password-reset');

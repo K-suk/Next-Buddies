@@ -17,7 +17,7 @@ const Navbar = () => {
     const fetchProfile = async () => {
       try {
         const profileData = await getProfile(); // ユーザープロファイルを取得
-        console.log(profileData);
+        // console.log(profileData);
         setIsSuperuser(profileData.is_superuser); // is_superuser ステータスをセット
         setProfile(profileData); // プロフィールデータをセット
       } catch (error) {

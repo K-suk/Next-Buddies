@@ -41,26 +41,6 @@ export default function PasswordResetConfirm() {
     };
 
     return (
-        // <form onSubmit={handleSubmit}>
-        //     <input
-        //         type="password"
-        //         name="new_password"
-        //         value={formData.new_password}
-        //         onChange={handleChange}
-        //         placeholder="Enter new password"
-        //         required
-        //     />
-        //     <input
-        //         type="password"
-        //         name="re_new_password"
-        //         value={formData.re_new_password}
-        //         onChange={handleChange}
-        //         placeholder="Confirm new password"
-        //         required
-        //     />
-        //     <button type="submit">Reset Password</button>
-        //     {message && <p>{message}</p>}
-        // </form>
         <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%);' }}>
             <div className="container" style={{ marginTop: '130px' }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">

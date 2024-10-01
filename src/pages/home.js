@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile, addToQueue } from '../../services/api';
-import UpdateModal from '../../components/updateModal';
+import UpdateModal from '../../components/UpdateModal';
 
 export default function Home() {
     const [name, setUsername] = useState('');
@@ -12,6 +12,7 @@ export default function Home() {
     const router = useRouter();
 
     useEffect(() => {
+        
         const fetchUserData = async () => {
             try {
                 const profile = await getProfile(); // ユーザー情報を取得
@@ -56,11 +57,6 @@ export default function Home() {
             setQueueStatus('Error adding to queue.');
         }
         setLoading(false);
-    };
-
-    const handleProfileUpdate = () => {
-        setSex('Updated'); // モーダルでのプロファイル更新後に性別を更新
-        handleAddToQueue(); // モーダルを閉じた後に再度キューに追加を試みる
     };
 
     return (

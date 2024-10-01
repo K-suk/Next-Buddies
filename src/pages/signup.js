@@ -19,16 +19,19 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        if (!formData.email.endsWith('@student.ubc.ca')) {
+            setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
+            return; // 条件を満たさない場合、APIリクエストを送信しない
+        }
         // フォーム送信データをログに出力
-        console.log('Form Data:', formData);
+        // console.log('Form Data:', formData);
         setLoading(true);
         try {
-            console.log('Sending API request to create user...');
+            // console.log('Sending API request to create user...');
             const response = await api.post('/auth/users/', formData);
             
             // 成功時のレスポンスをログに出力
-            console.log('Signup Response:', response.data);
+            // console.log('Signup Response:', response.data);
             setMessage('User registered successfully. Please check your email to activate your account.');
         } catch (error) {
             // エラーレスポンスの詳細をログに出力
