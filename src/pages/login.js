@@ -121,7 +121,7 @@ export default function Login() {
                                                 Forgot password?
                                             </a>
                                             <p className="mb-5 pb-lg-2 text-white" style={{ color: '#FFFFFF' }} onClick={handleSignUp}>
-                                                Don't have an account? <a href="#!" style={{ color: '#FFFFFF' }}>Register here</a>
+                                                Don&apos;t have an account? <a href="#!" style={{ color: '#FFFFFF' }}>Register here</a>
                                             </p>
                                         </form>
                                     </div>
