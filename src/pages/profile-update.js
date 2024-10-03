@@ -87,7 +87,7 @@ export default function ProfileUpdate() {
                                 <h1>Edit Profile</h1>
                                 <div className="thumb-lg member-thumb mx-auto">
                                     {/* 画像のプレビューを表示 */}
-                                    <img 
+                                    <Image 
                                         src={previewImage || "assets/images/faces/face15.jpg"} 
                                         className="rounded-circle img-thumbnail" 
                                         alt="profile-image" 

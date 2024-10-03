@@ -55,7 +55,7 @@ export default function Profile() {
                                     <>
                                         <div className="thumb-lg member-thumb mx-auto">
                                             {/* プロフィール画像を表示 */}
-                                            <img 
+                                            <Image 
                                                 src={profile.profile_image || "assets/images/faces/face15.jpg"} 
                                                 className="rounded-circle profile-image" 
                                                 alt="profile-image"

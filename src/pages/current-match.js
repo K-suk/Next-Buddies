@@ -58,7 +58,7 @@ export default function CurrentMatch() {
                                 {match ? (
                                     <>
                                         <div className="thumb-lg member-thumb mx-auto">
-                                            <img src={profileImageUrl} className="rounded-circle img-thumbnail" alt="profile-image" width={240} height={240} style={{ aspectRatio: '1/1'}} />
+                                            <Image src={profileImageUrl} className="rounded-circle img-thumbnail" alt="profile-image" width={240} height={240} style={{ aspectRatio: '1/1'}} />
                                         </div>
                                         <h1 className='mt-3'>{match.name}</h1>
                                         <p className="text-white" style={{ fontSize: '24px' }}>Age: {match.age}</p>
