@@ -42,23 +42,54 @@ export default function ProfileUpdate() {
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-
-        // Supabaseに画像をアップロード
-        const { data, error } = await supabase.storage
-            .from('ubc-buddies-profile-images')
-            .upload(`public/${file.name}`, file, {
-                cacheControl: '3600',
-                upsert: true,
-            });
-
-        if (error) {
-            console.error('Error uploading image:', error);
-        } else {
-            const imageUrl = supabase.storage.from('ubc-buddies-profile-images').getPublicUrl(`public/${file.name}`).data.publicUrl;
-            setFormData({ ...formData, profile_image: imageUrl }); // 画像URLをセット
-            setPreviewImage(imageUrl); // プレビュー用画像を更新
+    
+        // ファイルが選択されたか確認する
+        if (!file) {
+            console.log("No file selected");
+            return;
         }
-    };
+    
+        console.log("File selected:", file);
+    
+        // Supabaseに画像をアップロード
+        try {
+            console.log("Uploading image to Supabase...");
+    
+            const { data, error } = await supabase.storage
+                .from('ubc-buddies-profile-images')  // バケット名が正しいか確認
+                .upload(`public/${file.name}`, file, {
+                    cacheControl: '3600',
+                    upsert: true,
+                });
+    
+            if (error) {
+                console.error('Error uploading image:', error);
+                return;
+            }
+    
+            console.log("Image uploaded successfully:", data);
+    
+            // アップロードされた画像のURLを取得
+            const { data: publicUrlData, error: publicUrlError } = supabase.storage
+                .from('ubc-buddies-profile-images')
+                .getPublicUrl(`public/${file.name}`);
+    
+            if (publicUrlError) {
+                console.error('Error getting public URL:', publicUrlError);
+                return;
+            }
+    
+            const imageUrl = publicUrlData.publicUrl;
+            console.log("Image URL:", imageUrl);
+    
+            // フォームデータとプレビュー画像を更新
+            setFormData({ ...formData, profile_image: imageUrl });
+            setPreviewImage(imageUrl);
+    
+        } catch (err) {
+            console.error("Unexpected error:", err);
+        }
+    };    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
