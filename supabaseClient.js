@@ -12,7 +12,7 @@ export const uploadProfileImage = async (file) => {
     try {
         // Supabaseにファイルをアップロード
         const { data, error } = await supabase.storage
-            .from('profile-images')  // バケット名が 'profile-images' と仮定
+            .from('ubc-buddies-profile-images')  // バケット名が 'profile-images' と仮定
             .upload(`public/${file.name}`, file, {
                 cacheControl: '3600',
                 upsert: true,  // 同名のファイルが存在する場合は上書き
