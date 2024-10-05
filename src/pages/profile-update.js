@@ -45,7 +45,7 @@ export default function ProfileUpdate() {
 
         // Supabaseに画像をアップロード
         const { data, error } = await supabase.storage
-            .from('profile-images')
+            .from('ubc-buddies-profile-images')
             .upload(`public/${file.name}`, file, {
                 cacheControl: '3600',
                 upsert: true,
@@ -54,7 +54,7 @@ export default function ProfileUpdate() {
         if (error) {
             console.error('Error uploading image:', error);
         } else {
-            const imageUrl = supabase.storage.from('profile-images').getPublicUrl(`public/${file.name}`).data.publicUrl;
+            const imageUrl = supabase.storage.from('ubc-buddies-profile-images').getPublicUrl(`public/${file.name}`).data.publicUrl;
             setFormData({ ...formData, profile_image: imageUrl }); // 画像URLをセット
             setPreviewImage(imageUrl); // プレビュー用画像を更新
         }
