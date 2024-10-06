@@ -4,7 +4,7 @@ export default {
 
   // 画像のドメイン許可設定
   images: {
-    domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com'], // 許可された画像ドメイン
+    domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co'], // 許可された画像ドメイン
   },
 
   // 1. リダイレクト設定 (HTTPをHTTPSにリダイレクト)
