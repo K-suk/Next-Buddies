@@ -45,15 +45,15 @@ export default function ProfileUpdate() {
     
         // ファイルが選択されたか確認する
         if (!file) {
-            console.log("No file selected");
+            // console.log("No file selected");
             return;
         }
     
-        console.log("File selected:", file);
+        // console.log("File selected:", file);
     
         // Supabaseに画像をアップロード
         try {
-            console.log("Uploading image to Supabase...");
+            // console.log("Uploading image to Supabase...");
     
             const { data, error } = await supabase.storage
                 .from('ubc-buddies-profile-images')  // バケット名が正しいか確認
@@ -67,7 +67,7 @@ export default function ProfileUpdate() {
                 return;
             }
     
-            console.log("Image uploaded successfully:", data);
+            // console.log("Image uploaded successfully:", data);
     
             // アップロードされた画像のURLを取得
             const { data: publicUrlData, error: publicUrlError } = supabase.storage
@@ -80,7 +80,7 @@ export default function ProfileUpdate() {
             }
     
             const imageUrl = publicUrlData.publicUrl;
-            console.log("Image URL:", imageUrl);
+            // console.log("Image URL:", imageUrl);
     
             // フォームデータとプレビュー画像を更新
             setFormData({ ...formData, profile_image: imageUrl });

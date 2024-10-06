@@ -17,16 +17,28 @@ const Navbar = () => {
     const fetchProfile = async () => {
       try {
         const profileData = await getProfile(); // ユーザープロファイルを取得
-        // console.log(profileData);
-        setIsSuperuser(profileData.is_superuser); // is_superuser ステータスをセット
         setProfile(profileData); // プロフィールデータをセット
       } catch (error) {
         console.error('Failed to fetch profile data', error);
       }
     };
 
-    fetchProfile();
-  }, []); // コンポーネントマウント時にプロフィールデータを取得
+    // ページ遷移のたびにプロフィールを再取得する条件を絞る
+    const handleRouteChange = (url) => {
+      // `profile`ページまたは`profile-update`ページに遷移した時のみ再取得
+      if (url === '/profile' || url === '/profile-update') {
+        fetchProfile(); 
+      }
+    };
+
+    // ルート変更時にイベントリスナーを追加
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // クリーンアップ：イベントリスナーを解除
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]); // ルート変更時に再実行
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken'); // ログアウト時にアクセストークンを削除
