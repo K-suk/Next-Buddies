@@ -25,7 +25,7 @@ const Navbar = () => {
 
     // ページ遷移のたびにプロフィールを再取得
     const handleRouteChange = (url) => {
-      if (url === '/profile') {
+      if (url === '/profile', url === '/home') {
         fetchProfile(); // プロフィールページに遷移した際に再取得
       }
     };
