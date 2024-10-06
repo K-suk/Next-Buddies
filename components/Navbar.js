@@ -23,11 +23,10 @@ const Navbar = () => {
       }
     };
 
-    // ページ遷移のたびにプロフィールを再取得する条件を絞る
+    // ページ遷移のたびにプロフィールを再取得
     const handleRouteChange = (url) => {
-      // `profile`ページまたは`profile-update`ページに遷移した時のみ再取得
-      if (url === '/profile' || url === '/profile-update') {
-        fetchProfile(); 
+      if (url === '/profile') {
+        fetchProfile(); // プロフィールページに遷移した際に再取得
       }
     };
 
