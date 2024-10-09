@@ -46,9 +46,12 @@ export default function CurrentMatch() {
         }
     };
 
-    const profileImageUrl = match?.profile_image ? 
-        supabase.storage.from('ubc-buddies-profile-images').getPublicUrl(match.profile_image).data.publicUrl : 
-        "assets/images/faces/face15.jpg";
+    // Supabaseからプロフィール画像のURLを取得
+    const profileImageUrl = match?.profile_image
+        ? supabase.storage
+              .from('ubc-buddies-profile-images')
+              .getPublicUrl(`public/${match.profile_image}`).data.publicUrl
+        : "assets/images/faces/face15.jpg";
 
     return (
         <div className="content" style={{ marginTop: '100px' }}>
