@@ -7,7 +7,7 @@ export default {
     domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co'], // 許可された画像ドメイン
   },
 
-  // 1. リダイレクト設定 (HTTPをHTTPSにリダイレクト)
+  // リダイレクト設定 (HTTPをHTTPSにリダイレクト)
   async redirects() {
     return [
       {
@@ -19,7 +19,7 @@ export default {
     ];
   },
 
-  // 2. セキュリティヘッダーの設定
+  // セキュリティヘッダーとキャッシュ制御
   async headers() {
     return [
       {
@@ -33,19 +33,8 @@ export default {
           { key: 'Permissions-Policy', value: 'geolocation=(self), microphone=()' },  // 権限ポリシー
           { 
             key: 'Content-Security-Policy',  // Content Security Policy (CSP)
-            value: "default-src 'self'; script-src 'self' https://trusted-cdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' https://trusted-cdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://bootdey.com https://ubcbuddies.onrender.com https://rfljgrsesttopohfkikg.supabase.co; connect-src 'self'; frame-ancestors 'none';",
           },
-        ],
-      },
-    ];
-  },
-
-  // 3. キャッシュ制御
-  async headers() {
-    return [
-      {
-        source: '/(.*)', // 全てのルートに適用
-        headers: [
           {
             key: 'Cache-Control', // キャッシュポリシー
             value: 'public, max-age=31536000, immutable', // 長期間キャッシュ
@@ -55,6 +44,5 @@ export default {
     ];
   },
 
-  // 4. その他の設定
   poweredByHeader: false, // "X-Powered-By: Next.js" ヘッダーを削除してNext.jsの存在を隠す
 };

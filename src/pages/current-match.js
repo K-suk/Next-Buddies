@@ -45,8 +45,6 @@ export default function CurrentMatch() {
         }
     };
 
-    // const profileImageUrl = match?.profile_image ? `https://ubcbuddies.onrender.com${match.profile_image}` : "assets/images/faces/face15.jpg";
-
     return (
         <div className="content" style={{ marginTop: '100px' }}>
             <div className="container">
