@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { getCurrentMatch, submitReview } from '../../services/api';
 import ReviewModal from '../../components/ReviewModal'; // モーダルコンポーネントをインポート
 import Image from 'next/image';
-import { supabase } from '../../supabaseClient'; // Supabaseクライアントをインポート
 
 export default function CurrentMatch() {
     const [match, setMatch] = useState(null);
@@ -46,12 +45,7 @@ export default function CurrentMatch() {
         }
     };
 
-    // Supabaseからプロフィール画像のURLを取得
-    const profileImageUrl = match?.profile_image
-        ? supabase.storage
-              .from('ubc-buddies-profile-images')
-              .getPublicUrl(`public/${match.profile_image}`).data.publicUrl
-        : "assets/images/faces/face15.jpg";
+    // const profileImageUrl = match?.profile_image ? `https://ubcbuddies.onrender.com${match.profile_image}` : "assets/images/faces/face15.jpg";
 
     return (
         <div className="content" style={{ marginTop: '100px' }}>
@@ -64,14 +58,7 @@ export default function CurrentMatch() {
                                 {match ? (
                                     <>
                                         <div className="thumb-lg member-thumb mx-auto">
-                                            <Image 
-                                                src={profileImageUrl} 
-                                                className="rounded-circle img-thumbnail" 
-                                                alt="profile-image" 
-                                                width={240} 
-                                                height={240} 
-                                                style={{ aspectRatio: '1/1' }} 
-                                            />
+                                            <Image src={match.profile_image || "assets/images/faces/face15.jpg"} className="rounded-circle img-thumbnail" alt="profile-image" width={240} height={240} style={{ aspectRatio: '1/1'}} />
                                         </div>
                                         <h1 className='mt-3'>{match.name}</h1>
                                         <p className="text-white" style={{ fontSize: '24px' }}>Age: {match.age}</p>
@@ -98,5 +85,29 @@ export default function CurrentMatch() {
                 </div>
             </div>
         </div>
+        // <div>
+        //     {match ? (
+        //         <div>
+        //             <h1>Current Match</h1>
+        //             <p>Name: {match.name}</p>
+        //             <p>Email: {match.email}</p>
+        //             <p>Contact: {match.contact_address}</p>
+        //             {averageRating !== null && !isNaN(averageRating) ? (
+        //                 <p>Partner's average rating: {averageRating.toFixed(2)}</p>
+        //             ) : (
+        //                 <p>No rating available</p>
+        //             )}
+        //             <button onClick={handleDoneClick}>Done</button>
+        //         </div>
+        //     ) : (
+        //         <p>No current match found.</p>
+        //     )}
+            // <ReviewModal
+            //     isOpen={isReviewModalOpen}
+            //     onRequestClose={() => setIsReviewModalOpen(false)}
+            //     onReviewSubmit={handleReviewSubmit}
+            // />
+        //     <button onClick={handleLogout}>Logout</button>
+        // </div>
     );
 }
