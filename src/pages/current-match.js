@@ -16,7 +16,7 @@ export default function CurrentMatch() {
             try {
                 const data = await getCurrentMatch();
                 setMatch(data);
-                console.log(match.profile_image);
+                console.log(data.profile_image);
                 if (data.review_count && data.review_sum) {
                     setAverageRating(data.review_sum / data.review_count);
                 }
@@ -57,7 +57,7 @@ export default function CurrentMatch() {
                                 {match ? (
                                     <>
                                         <div className="thumb-lg member-thumb mx-auto">
-                                            <Image src={match.profile_image || "assets/images/faces/face15.jpg"} className="rounded-circle img-thumbnail" alt="profile-image" width={240} height={240} style={{ aspectRatio: '1/1'}} />
+                                            <Image src={match.profile_image ? match.profile_image : "assets/images/faces/face15.jpg"} className="rounded-circle img-thumbnail" alt="profile-image" width={240} height={240} style={{ aspectRatio: '1/1'}} />
                                         </div>
                                         <h1 className='mt-3'>{match.name}</h1>
                                         <p className="text-white" style={{ fontSize: '24px' }}>Age: {match.age}</p>
