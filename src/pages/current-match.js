@@ -16,6 +16,7 @@ export default function CurrentMatch() {
             try {
                 const data = await getCurrentMatch();
                 setMatch(data);
+                console.log(match.profile_image);
                 if (data.review_count && data.review_sum) {
                     setAverageRating(data.review_sum / data.review_count);
                 }
