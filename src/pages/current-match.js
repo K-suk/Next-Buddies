@@ -61,10 +61,8 @@ export default function CurrentMatch() {
                                         <div className="thumb-lg member-thumb mx-auto">
                                             <Image
                                                 src={match && match.profile_image 
-                                                    ? (match.profile_image.includes('localhost') 
-                                                        ? supabaseBaseUrl + match.profile_image.split('localhost:8000')[1] 
-                                                        : match.profile_image) 
-                                                    : "assets/images/faces/face15.jpg"}
+                                                    ? `${supabaseBaseUrl}${match.profile_image.split('/').pop()}` // match.profile_image からファイル名だけを抽出してSupabase URLに組み込む
+                                                    : "assets/images/faces/face15.jpg"}  // プロフィール画像がない場合にデフォルト画像を表示
                                                 className="rounded-circle img-thumbnail"
                                                 alt="profile-image"
                                                 width={240}
