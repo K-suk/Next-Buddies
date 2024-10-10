@@ -17,7 +17,6 @@ export default function Profile() {
             try {
                 const profileData = await getProfile();
                 setProfile(profileData);
-                console.log(profileData.profile_image);
                 setLoading(false);
             } catch (error) {
                 setError('Failed to load profile. Please try again.');
