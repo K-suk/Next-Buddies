@@ -72,7 +72,7 @@ export default function Home() {
             />
 
             <div className="text-center mb-3">
-                <label htmlFor="need">Select what you're looking for:</label>
+                <label htmlFor="need">Select what you are looking for:</label>
                 <select 
                     id="need" 
                     value={need} 

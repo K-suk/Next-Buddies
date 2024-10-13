@@ -128,26 +128,6 @@ export const updateProfile = async (profileData) => {
   }
 };
 
-// export const addToQueue = async () => {
-//   try {
-//     const response = await axios.post(`${API_URL}/match/add-to-queue/`, {}, getAuthHeaders());
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error adding to queue:', error.response ? error.response.data : error.message);
-//     throw error;
-//   }
-// };
-
-// export const processMatching = async () => {
-//   try {
-//     const response = await axios.post(`${API_URL}/match/process-matching/`, {}, getAuthHeaders());
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error processing matching:', error.response ? error.response.data : error.message);
-//     throw error;
-//   }
-// };
-
 export const addMatching = async (need) => {
   try {
     const response = await axios.post(`${API_URL}/match/add-match/`, { need }, getAuthHeaders());
