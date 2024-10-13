@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faProjectDiagram, faUser, faCog, faSignOutAlt, faThLarge, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { processMatching, getCurrentMatch, getProfile } from '../services/api'; // getProfileをインポート
+import { getCurrentMatch, getProfile } from '../services/api'; // getProfileをインポート
 
 const Navbar = () => {
   const router = useRouter();
@@ -86,13 +86,13 @@ const Navbar = () => {
       <div className="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
         <ul className="navbar-nav navbar-nav-right" style={{ marginLeft: 'auto' }}>
           {/* is_superuser が true の場合のみ Match ボタンを表示 */}
-          {isSuperuser && (
+          {/* {isSuperuser && (
             <li>
               <button onClick={handleProcessMatching} className="btn btn-success waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '', fontSize: '18px', borderRadius: '5px' }}>
                 Match
               </button>
             </li>
-          )}
+          )} */}
           <li className="nav-item dropdown">
             <Dropdown>
               <Dropdown.Toggle as="a" className="nav-link count-indicator">
