@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getProfile, addToQueue } from '../../services/api';
+import { getProfile, addMatching } from '../../services/api';
 import UpdateModal from '../../components/UpdateModal';
 
 export default function Home() {
@@ -9,10 +9,10 @@ export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [queueStatus, setQueueStatus] = useState('');
     const [loading, setLoading] = useState(false);
+    const [need, setNeed] = useState(''); // need（ユーザーの希望するマッチングの種類）
     const router = useRouter();
 
     useEffect(() => {
-        
         const fetchUserData = async () => {
             try {
                 const profile = await getProfile(); // ユーザー情報を取得
@@ -38,23 +38,25 @@ export default function Home() {
         fetchUserData();
     }, [router]);
 
-    const handleAddToQueue = async () => {
-        setLoading(true);
-        const profile = await getProfile();
-        if (!profile.sex) {
-            setIsModalOpen(true); // 性別が未入力の場合はモーダルを表示
+    // マッチング処理
+    const handleAddMatching = async () => {
+        if (!need) {
+            alert('Please select a need for matching.');
             return;
         }
-        setIsModalOpen(false);
+
+        setLoading(true);
         try {
-            const response = await addToQueue();
+            const response = await addMatching(need); // needを指定してマッチング開始
             setQueueStatus(response.status);
-            if (response.status === 'User added to queue') {
+            if (response.status === 'Added to male queue, waiting for match' || response.status === 'Added to female queue, waiting for match') {
                 router.push('/wait');
+            } else if (response.status === 'Matched') {
+                router.push('/current-match');
             }
         } catch (error) {
-            console.error('Error adding to queue:', error);
-            setQueueStatus('Error adding to queue.');
+            console.error('Error starting matching:', error);
+            setQueueStatus('Error starting matching.');
         }
         setLoading(false);
     };
@@ -68,15 +70,35 @@ export default function Home() {
                 className="img-fluid mx-auto d-block"
                 style={{ borderRadius: '1rem 0 0 1rem', border: 'none' }}
             />
+
+            <div className="text-center mb-3">
+                <label htmlFor="need">Select what you're looking for:</label>
+                <select 
+                    id="need" 
+                    value={need} 
+                    onChange={(e) => setNeed(e.target.value)} 
+                    className="form-select"
+                    style={{ width: '75%', height: '60px', margin: '0 auto' }}
+                >
+                    <option value="">-- Select --</option>
+                    <option value="friend">New Friend (With same Gender)</option>
+                    <option value="gym">Gym Buddy (With same Gender)</option>
+                    <option value="drink">Drinking Buddy (With same Gender & 19+)</option>
+                    <option value="party">Party Mate (With same Gender)</option>
+                    <option value="dating">Dating Partner (With different Gender)</option>
+                </select>
+            </div>
+
             {loading ?
                 <button className="btn btn-danger waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Loading...</button>
             :
-                <button onClick={handleAddToQueue} className="btn btn-danger waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Start Matching</button>
+                <button onClick={handleAddMatching} className="btn btn-danger waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Start Matching</button>
             }
+
             <UpdateModal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
-                onProfileUpdate={handleAddToQueue} // プロファイル更新時の処理を指定
+                onProfileUpdate={handleAddMatching} // プロファイル更新時の処理を指定
             />
         </div>
     );

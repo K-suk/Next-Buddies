@@ -43,7 +43,7 @@ export default function Wait() {
                 className="img-fluid mx-auto d-block"
                 style={{ borderRadius: '1rem 0 0 1rem', border: 'none' }}
             />
-            <h1 className='text-center'>Now you are in Queue! Please give us momoent to fiind your buddy!</h1>
+            <h1 className='text-center'>Now you are in Queue! Please wait a moment to find your buddy!</h1>
         </div>
     );
 }

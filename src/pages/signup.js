@@ -84,7 +84,7 @@ export default function SignUp() {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     className="form-control form-control-lg"
-                                                    placeholder="Email"
+                                                    placeholder="Student Email (CWL@student.ubc.ca)"
                                                     style={{ color: 'white' }}
                                                     required
                                                 />
