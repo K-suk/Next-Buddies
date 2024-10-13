@@ -72,7 +72,7 @@ export default function CurrentMatch() {
                                         <h1 className='mt-3'>{match.name}</h1>
                                         <p className="text-white" style={{ fontSize: '24px' }}>Age: {match.age}</p>
                                         <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px'  }}>Sex: {match.sex}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Contact: {match.contact_address}</p>
+                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Instagram: {match.contact_address}</p>
                                         <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Bio: {match.bio}</p>
                                         {loading ?
                                             <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Loading...</button>

@@ -77,7 +77,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             name="contact_address"
                                             value={formData.contact_address}
                                             onChange={handleChange}
-                                            placeholder="Contact Address"
+                                            placeholder="Instagram"
                                             required
                                             className="form-control"
                                             style={{ color: 'white' }}

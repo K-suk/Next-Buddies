@@ -66,7 +66,7 @@ export default function Profile() {
                                         <h1 className='py-3'>{profile.name}</h1>
                                         <p className="text-white" style={{ fontSize: '24px' }}>Age: {profile.age}</p>
                                         <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px'  }}>Sex: {profile.sex}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Contact: {profile.contact_address}</p>
+                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Instagram: {profile.contact_address}</p>
                                         <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Bio: {profile.bio}</p>
                                         <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '5px' }} onClick={handleEdit}>Edit Profile</button>
                                     </>
