@@ -93,7 +93,7 @@ export default function Home() {
 
             {/* Central alignment for select */}
             <div className="text-center mb-3" style={{ width: '100%', textAlign: 'center' }}>
-                <label htmlFor="need">Select what you're looking for:</label>
+                <label htmlFor="need">Select what you are looking for:</label>
                 <select 
                     id="need" 
                     value={need} 
@@ -102,10 +102,10 @@ export default function Home() {
                     style={{ width: '75%', height: '60px', margin: '0 auto' }} // セレクトボックスを中央寄せ
                 >
                     <option value="">-- Select --</option>
-                    <option value="gym">Gym Buddy</option>
-                    <option value="drink">Drinking Buddy</option>
-                    <option value="party">Party Mate</option>
-                    <option value="dating">Dating Partner</option>
+                    <option value="gym">Gym Buddy (Same gender)</option>
+                    <option value="drink">Drinking Buddy (Same gender, 19+)</option>
+                    <option value="party">Party Mate (Same gender)</option>
+                    <option value="dating">Dating Partner (Different gender)</option>
                 </select>
             </div>
 
