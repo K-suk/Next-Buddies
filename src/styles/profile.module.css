@@ -41,10 +41,6 @@
 .text-muted {
     color: #98a6ad!important;
 }
-h4 {
-    line-height: 22px;
-    font-size: 18px;
-}
 
 .profile-image {
     max-width: 240px; /* 最大サイズを設定 */
