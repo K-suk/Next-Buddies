@@ -76,7 +76,7 @@ export default function Login() {
                                                 />
                                             </div>
 
-                                            <h5 className={`fw-normal mb-3 pb-3 login-header`}>
+                                            <h5 className={`fw-normal mb-3 pb-3 ${styles['login-header']}`}>
                                                 Sign into your account
                                             </h5>
 
