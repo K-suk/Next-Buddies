@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import api from '../../services/api';
 import { useRouter } from 'next/router';
+import '../styles/PasswordResetRequest.css'; // CSSファイルをインポート
 
 export default function PasswordResetRequest() {
     const [email, setEmail] = useState('');
@@ -10,7 +11,6 @@ export default function PasswordResetRequest() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // メールアドレスのドメインチェック
         if (!email.endsWith('@student.ubc.ca')) {
             setMessage('Only UBC student email addresses are allowed.');
             return;
@@ -31,17 +31,17 @@ export default function PasswordResetRequest() {
     };
 
     return (
-        <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%)' }}>
-            <div className="container" style={{ marginTop: '130px' }}>
+        <section className="vh-100">
+            <div className="container container-margin-top">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card" style={{ backgroundColor: 'transparent', border: 'none'}}>
+                        <div className="card transparent-card">
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-white">
                                         <form onSubmit={handleSubmit}>
 
-                                            <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
+                                            <h5 className="fw-normal mb-3 pb-3 reset-header">
                                                 Change Your Password
                                             </h5>
 
@@ -51,15 +51,14 @@ export default function PasswordResetRequest() {
                                                     name="email"
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="Enter your email"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
                                             <div className="pt-1 mb-4">
                                                 <button
-                                                    className="btn btn-warning btn-lg btn-block"
+                                                    className="btn btn-warning btn-lg btn-block btn-large"
                                                     type="submit"
                                                 >
                                                     Reset Password
@@ -70,7 +69,7 @@ export default function PasswordResetRequest() {
 
                                             <div className="pt-1 mb-4">
                                                 <button
-                                                    className="btn btn-danger btn-lg btn-block"
+                                                    className="btn btn-danger btn-lg btn-block btn-large"
                                                     type="button"
                                                     onClick={handleLogin}
                                                 >

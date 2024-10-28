@@ -1,7 +1,7 @@
-// pages/password-reset/[uid]/[token].js
 import { useState } from 'react';
 import api from '../../../../../../services/api';
 import { useRouter } from 'next/router';
+import '../../../styles/PasswordResetConfirm.css';  // CSSファイルをインポート
 
 export default function PasswordResetConfirm() {
     const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ export default function PasswordResetConfirm() {
         re_new_password: '',
     });
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false); // Loading状態を追加
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleChange = (e) => {
@@ -41,17 +41,17 @@ export default function PasswordResetConfirm() {
     };
 
     return (
-        <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%);' }}>
-            <div className="container" style={{ marginTop: '130px' }}>
+        <section className="vh-100">
+            <div className="container container-margin-top">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card" style={{ backgroundColor: 'transparent', border: 'none'}}>
+                        <div className="card transparent-card">
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-white">
                                         <form onSubmit={handleSubmit}>
 
-                                            <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
+                                            <h5 className="fw-normal mb-3 pb-3 reset-header">
                                                 Reset Your Password
                                             </h5>
 
@@ -62,9 +62,8 @@ export default function PasswordResetConfirm() {
                                                     name="new_password"
                                                     value={formData.new_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="Enter new password"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
@@ -76,9 +75,8 @@ export default function PasswordResetConfirm() {
                                                     name="re_new_password"
                                                     value={formData.re_new_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="Confirm new password"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
@@ -86,13 +84,13 @@ export default function PasswordResetConfirm() {
                                             <div className="pt-1 mb-4">
                                                 {loading?
                                                     <button
-                                                        className="btn btn-success btn-lg btn-block"
+                                                        className="btn btn-success btn-lg btn-block btn-large"
                                                     >
                                                         Loading...
                                                     </button>
                                                 :
                                                     <button
-                                                        className="btn btn-success btn-lg btn-block"
+                                                        className="btn btn-success btn-lg btn-block btn-large"
                                                         type="submit"
                                                     >
                                                         Reset Password

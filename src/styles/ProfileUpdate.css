@@ -1,0 +1,18 @@
+/* Profile Update Page Styles */
+.content-margin-top {
+    margin-top: 100px;
+}
+
+.profile-image {
+    aspect-ratio: 1 / 1;
+}
+
+.input-white {
+    color: white;
+}
+
+.btn-large {
+    padding: 20px 60px;
+    font-size: 24px;
+    border-radius: 5px;
+}

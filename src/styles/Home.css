@@ -1,0 +1,23 @@
+/* Home Page Styles */
+.container-padding-top {
+    padding-top: 100px;
+}
+
+.centered-image {
+    border-radius: 1rem 0 0 1rem;
+    border: none;
+}
+
+.select-center {
+    width: 75%;
+    height: 60px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn-large {
+    padding: 20px 60px;
+    font-size: 24px;
+    border-radius: 10px;
+    font-weight: bold;
+}

@@ -1,0 +1,21 @@
+/* Activate Page Custom Styles */
+.activate-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.activate-message {
+    color: white;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.activate-button {
+    background-color: #343a40;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}

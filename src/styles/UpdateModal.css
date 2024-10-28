@@ -1,0 +1,25 @@
+/* Update Modal Custom Styles */
+.modal-content {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    width: 80%;
+}
+
+.card-title {
+    color: black;
+}
+
+.form-control-white {
+    color: white;
+}
+
+.btn-large {
+    padding: 20px 60px;
+    font-size: 24px;
+    border-radius: 10px;
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '../../services/api';
+import '../styles/Login.css'; // CSSファイルをインポート
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -17,7 +18,6 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Emailドメインのチェック
         if (!formData.email.endsWith('@student.ubc.ca')) {
             setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
             return;
@@ -26,13 +26,11 @@ export default function Login() {
         setLoading(true);
         try {
             const response = await login(formData.email, formData.password);
-    
-            // レスポンス内容をログに出力して確認
             if (response && response.access) {
-                localStorage.setItem('access_token', response.access); // ログイン成功時にaccessトークンを保存
-                localStorage.setItem('refresh_token', response.refresh); // refreshトークンも保存
-                setMessage('Login Success: Redirecting to home...')
-                router.push('/home'); // ログイン成功時にhomeページにリダイレクト
+                localStorage.setItem('access_token', response.access);
+                localStorage.setItem('refresh_token', response.refresh);
+                setMessage('Login Success: Redirecting to home...');
+                router.push('/home');
             } else {
                 setMessage('Login failed: Token not received.');
                 console.error('Login failed: Token not received.');
@@ -53,25 +51,23 @@ export default function Login() {
     };
 
     return (
-        <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%)' }}>
+        <section className="vh-100">
             <div className="container h-100 py-5">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card" style={{ backgroundColor: 'transparent', border: 'none'}}>
+                        <div className="card transparent-card">
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
                                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                                         alt="login form"
-                                        className="img-fluid"
-                                        style={{ borderRadius: '1rem 0 0 1rem', border: 'none' }}
+                                        className="img-fluid rounded-image"
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-white">
                                         <form onSubmit={handleSubmit}>
                                             <div className="d-flex pb-1">
-                                                {/* <span className="h1 fw-bold mb-0">Logo</span> */}
                                                 <img 
                                                     src='/images/logo.png' 
                                                     alt='logo' 
@@ -79,7 +75,7 @@ export default function Login() {
                                                 />
                                             </div>
 
-                                            <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
+                                            <h5 className="fw-normal mb-3 pb-3 login-header">
                                                 Sign into your account
                                             </h5>
 
@@ -90,9 +86,8 @@ export default function Login() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
@@ -104,9 +99,8 @@ export default function Login() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="Password"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
@@ -121,11 +115,11 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className="small" onClick={handlePasswordReset} style={{ color: '#FFFFFF' }}>
+                                            <a className="small text-white-link" onClick={handlePasswordReset}>
                                                 Forgot password?
                                             </a>
-                                            <p className="mb-5 pb-lg-2 text-white" style={{ color: '#FFFFFF' }} onClick={handleSignUp}>
-                                                Don&apos;t have an account? <a href="#!" style={{ color: '#FFFFFF' }}>Register here</a>
+                                            <p className="mb-5 pb-lg-2 text-white text-white-link" onClick={handleSignUp}>
+                                                Don&apos;t have an account? <a href="#!" className="text-white-link">Register here</a>
                                             </p>
                                         </form>
                                     </div>

@@ -1,7 +1,7 @@
-// pages/wait.js
 import { useRouter } from 'next/router';
 import { getProfile } from '../../services/api';
 import { useEffect } from 'react';
+import '../styles/Wait.css'; // CSSファイルをインポート
 
 export default function Wait() {
     const router = useRouter();
@@ -33,14 +33,13 @@ export default function Wait() {
     }, []);
 
     return (
-        <div className='container' style={{ paddingTop: '100px' }}>
+        <div className="container container-padding-top">
             <img
                 src="/images/BUDDIES.png"
                 alt="login form"
-                className="img-fluid mx-auto d-block"
-                style={{ borderRadius: '1rem 0 0 1rem', border: 'none' }}
+                className="img-fluid mx-auto d-block rounded-image"
             />
-            <h1 className='text-center'>Now you are in Queue! Please wait a moment to find your buddy!</h1>
+            <h1 className="text-center-message">Now you are in Queue! Please wait a moment to find your buddy!</h1>
         </div>
     );
 }

@@ -1,0 +1,13 @@
+/* Wait Page Styles */
+.container-padding-top {
+    padding-top: 100px;
+}
+
+.rounded-image {
+    border-radius: 1rem 0 0 1rem;
+    border: none;
+}
+
+.text-center-message {
+    text-align: center;
+}

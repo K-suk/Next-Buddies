@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { changePassword } from '../../services/api';
+import '../styles/ChangePassword.css';  // CSSファイルをインポート
 
 export default function ChangePassword() {
     const [formData, setFormData] = useState({
@@ -25,14 +26,12 @@ export default function ChangePassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // 新しいパスワードの強度チェック
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordPattern.test(formData.new_password)) {
             setMessage('New password must be at least 8 characters, include an uppercase letter, and a number.');
             return;
         }
 
-        // 新しいパスワードと現在のパスワードの比較
         if (formData.current_password === formData.new_password) {
             setMessage('New password cannot be the same as the current password.');
             return;
@@ -54,17 +53,17 @@ export default function ChangePassword() {
     };
 
     return (
-        <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%)' }}>
-            <div className="container" style={{ marginTop: '130px' }}>
+        <section className="vh-100">
+            <div className="container container-margin-top">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card" style={{ backgroundColor: 'transparent', border: 'none'}}>
+                        <div className="card transparent-card">
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-white">
                                         <form onSubmit={handleSubmit}>
 
-                                            <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
+                                            <h5 className="fw-normal mb-3 pb-3 change-header">
                                                 Change Your Password
                                             </h5>
 
@@ -74,9 +73,8 @@ export default function ChangePassword() {
                                                     name="current_password"
                                                     value={formData.current_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="Current Password"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
@@ -87,9 +85,8 @@ export default function ChangePassword() {
                                                     name="new_password"
                                                     value={formData.new_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg"
+                                                    className="form-control form-control-lg input-white"
                                                     placeholder="New Password"
-                                                    style={{ color: 'white' }}
                                                     required
                                                 />
                                             </div>
@@ -97,13 +94,13 @@ export default function ChangePassword() {
                                             <div className="pt-1 mb-4">
                                                 {loading ?
                                                     <button
-                                                        className="btn btn-warning btn-lg btn-block"
+                                                        className="btn btn-warning btn-lg btn-block btn-large"
                                                     >
                                                         Loading...
                                                     </button>
                                                 :
                                                     <button
-                                                        className="btn btn-warning btn-lg btn-block"
+                                                        className="btn btn-warning btn-lg btn-block btn-large"
                                                         type="submit"
                                                     >
                                                         Change Password

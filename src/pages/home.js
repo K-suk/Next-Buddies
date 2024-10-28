@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile, addMatching } from '../../services/api';
 import UpdateModal from '../../components/UpdateModal';
+import '../styles/Home.css'; // CSSファイルをインポート
 
 export default function Home() {
     const [name, setUsername] = useState('');
@@ -84,23 +85,21 @@ export default function Home() {
     };
 
     return (
-        <div className='container' style={{ paddingTop: '100px' }}>
-            <h1 className='text-center'>Hi {name}! Click button for best drinking mate</h1>
+        <div className="container container-padding-top">
+            <h1 className="text-center">Hi {name}! Click button for best drinking mate</h1>
             <img
                 src="/images/BUDDIES.png"
                 alt="login form"
-                className="img-fluid mx-auto d-block"
-                style={{ borderRadius: '1rem 0 0 1rem', border: 'none' }}
+                className="img-fluid mx-auto d-block centered-image"
             />
 
-            <div className="text-center mb-3" style={{ width: '100%', textAlign: 'center' }}>
+            <div className="text-center mb-3 select-center">
                 <label htmlFor="need">Select what you are looking for:</label>
                 <select 
                     id="need" 
                     value={need} 
                     onChange={(e) => setNeed(e.target.value)} 
                     className="form-select"
-                    style={{ width: '75%', height: '60px', margin: '0 auto' }}
                 >
                     <option value="">-- Select --</option>
                     <option value="gym">Gym Buddy (Same gender)</option>
@@ -113,9 +112,9 @@ export default function Home() {
             {errorMessage && <p className="alert alert-danger text-center">{errorMessage}</p>}
 
             {loading ?
-                <button className="btn btn-danger waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Loading...</button>
+                <button className="btn btn-danger waves-effect w-md waves-light d-block mx-auto btn-large">Loading...</button>
             :
-                <button onClick={() => handleAddMatching()} className="btn btn-danger waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Start Matching</button>
+                <button onClick={() => handleAddMatching()} className="btn btn-danger waves-effect w-md waves-light d-block mx-auto btn-large">Start Matching</button>
             }
 
             <UpdateModal

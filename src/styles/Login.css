@@ -1,0 +1,28 @@
+/* Login Page Styles */
+.vh-100 {
+    height: 100vh;
+    background: linear-gradient(to bottom, #000066 0%, #cc00cc 100%);
+}
+
+.transparent-card {
+    background-color: transparent;
+    border: none;
+}
+
+.rounded-image {
+    border-radius: 1rem 0 0 1rem;
+    border: none;
+}
+
+.login-header {
+    letter-spacing: 1px;
+}
+
+.input-white {
+    color: white;
+}
+
+.text-white-link {
+    color: #FFFFFF;
+    cursor: pointer;
+}

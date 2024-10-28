@@ -1,19 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { updateProfile } from '../services/api';
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '10px',
-        width: '80%',
-    },
-};
+import 'src/styles/UpdateModal.css';  // 作成したCSSファイルをインポート
 
 Modal.setAppElement('#__next');
 
@@ -65,14 +53,14 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Submit Update"
-            style={customStyles}
+            className="modal-content"  // CSSクラスを使用
         >
             <div className="content">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="text-center card-box">
-                                <h2 style={{ color: 'black' }}>We need this information for matching!</h2>
+                                <h2 className="card-title">We need this information for matching!</h2>
                                 <form onSubmit={handleSubmit} className="member-card pb-2">
                                     <div className="form-group">
                                         <select
@@ -80,8 +68,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             value={formData.sex}
                                             onChange={handleChange}
                                             required
-                                            className="form-control"
-                                            style={{ color: 'white' }}
+                                            className="form-control form-control-white"
                                         >
                                             <option value="">Please choose your sex</option>
                                             <option value="Male">Male</option>
@@ -96,8 +83,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             onChange={handleChange}
                                             placeholder="Instagram"
                                             required
-                                            className="form-control"
-                                            style={{ color: 'white' }}
+                                            className="form-control form-control-white"
                                             maxLength="50"
                                         />
                                     </div>
@@ -109,8 +95,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             onChange={handleChange}
                                             placeholder="Age"
                                             required
-                                            className="form-control"
-                                            style={{ color: 'white' }}
+                                            className="form-control form-control-white"
                                             maxLength="5"
                                         />
                                     </div>
@@ -120,15 +105,14 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             value={formData.bio}
                                             onChange={handleChange}
                                             placeholder="Bio"
-                                            className="form-control"
-                                            style={{ color: 'white' }}
+                                            className="form-control form-control-white"
                                             maxLength="250"
                                         />
                                     </div>
                                     {loading ?
-                                        <button className="btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light" style={{ padding: '20px 60px', fontSize: '24px' }}>Loading...</button>
+                                        <button className="btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light btn-large">Loading...</button>
                                     :
-                                        <button type="submit" className="btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light" style={{ padding: '20px 60px', fontSize: '24px' }}>Submit</button>
+                                        <button type="submit" className="btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light btn-large">Submit</button>
                                     }
                                 </form>
                             </div>

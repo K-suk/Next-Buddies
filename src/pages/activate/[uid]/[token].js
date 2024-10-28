@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import api from '../../../../services/api';
+import '../../../styles/Activate.css'; // 新しいCSSファイルをインポート
 
 export default function Activate() {
     const router = useRouter();
@@ -25,13 +26,11 @@ export default function Activate() {
     };
 
     return (
-        <>
-            <div>
-                <h1>Account Activation</h1>
-                <p className='text-white'>{message}</p>
-                <p className='text-white'>Even though it says Activation failed, most of time it success. So please try to login. If it still does not work, email to buddies872@gmail.com</p>
-                <button className="btn btn-dark btn-lg btn-block" onClick={handleLogin}>Go to Login Page</button>
-            </div>
-        </>
+        <div className="activate-container">
+            <h1>Account Activation</h1>
+            <p className="activate-message">{message}</p>
+            <p className="activate-message">Even though it says Activation failed, most of time it success. So please try to login. If it still does not work, email to buddies872@gmail.com</p>
+            <button className="activate-button" onClick={handleLogin}>Go to Login Page</button>
+        </div>
     );
 }

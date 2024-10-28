@@ -1,9 +1,9 @@
-// pages/profile.js
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile } from '../../services/api';
 import Image from 'next/image';
 import Link from 'next/link';
+import '../styles/Profile.css'; // CSSファイルをインポート
 
 export default function Profile() {
     const [profile, setProfile] = useState(null);
@@ -45,7 +45,7 @@ export default function Profile() {
     };
 
     return (
-        <div className="content" style={{ marginTop: '100px' }}>
+        <div className="content content-margin-top">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
@@ -54,21 +54,19 @@ export default function Profile() {
                                 {profile ? (
                                     <>
                                         <div className="thumb-lg member-thumb mx-auto">
-                                            {/* プロフィール画像を表示 */}
                                             <Image 
                                                 src={profile.profile_image || "assets/images/faces/face15.jpg"} 
                                                 className="rounded-circle profile-image" 
                                                 alt="profile-image"
                                                 width={240}
-                                                style={{ aspectRatio: '1/1'}}
                                             />
                                         </div>
-                                        <h1 className='py-3'>{profile.name}</h1>
-                                        <p className="text-white" style={{ fontSize: '24px' }}>Age: {profile.age}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px'  }}>Sex: {profile.sex}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Instagram: {profile.contact_address}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Bio: {profile.bio}</p>
-                                        <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '5px' }} onClick={handleEdit}>Edit Profile</button>
+                                        <h1 className="py-3">{profile.name}</h1>
+                                        <p className="text-white-large">Age: {profile.age}</p>
+                                        <p className="text-white-large mt-negative">Sex: {profile.sex}</p>
+                                        <p className="text-white-large mt-negative">Instagram: {profile.contact_address}</p>
+                                        <p className="text-white-large mt-negative">Bio: {profile.bio}</p>
+                                        <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light btn-large" onClick={handleEdit}>Edit Profile</button>
                                     </>
                                 ) : (
                                     <p>No profile data found.</p>

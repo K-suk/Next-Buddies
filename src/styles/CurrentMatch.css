@@ -1,0 +1,28 @@
+/* Current Match Page Styles */
+.content-margin-top {
+    margin-top: 100px;
+}
+
+.member-card {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.profile-image {
+    aspect-ratio: 1 / 1;
+}
+
+.text-white-large {
+    color: white;
+    font-size: 24px;
+}
+
+.btn-large {
+    padding: 20px 60px;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.mt-negative {
+    margin-top: -15px;
+}

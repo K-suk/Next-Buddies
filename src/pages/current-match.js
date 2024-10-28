@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getCurrentMatch, submitReview } from '../../services/api';
-import ReviewModal from '../../components/ReviewModal'; // モーダルコンポーネントをインポート
+import ReviewModal from '../../components/ReviewModal';
 import Image from 'next/image';
+import '../styles/CurrentMatch.css';  // CSSファイルをインポート
 
 export default function CurrentMatch() {
     const [match, setMatch] = useState(null);
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
     const [averageRating, setAverageRating] = useState(null);
-    const [loading, setLoading] = useState(false); // Loading状態を追加
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export default function CurrentMatch() {
                 }
             } catch (error) {
                 console.error('Error fetching current match:', error);
-                router.push('/home'); // マッチがない場合、ホームにリダイレクト
+                router.push('/home');
             }
         };
 
@@ -30,7 +31,7 @@ export default function CurrentMatch() {
 
     const handleDoneClick = () => {
         setLoading(true);
-        setIsReviewModalOpen(true); // モーダルを開く
+        setIsReviewModalOpen(true);
         setLoading(false);
     };
 
@@ -39,7 +40,7 @@ export default function CurrentMatch() {
             const updatedRating = await submitReview(review);
             setAverageRating(updatedRating);
             setIsReviewModalOpen(false);
-            router.push('/home'); // レビュー送信後にホームページにリダイレクト
+            router.push('/home');
         } catch (error) {
             console.error('Error submitting review:', error);
         }
@@ -48,36 +49,35 @@ export default function CurrentMatch() {
     const supabaseBaseUrl = 'https://rfljgrsesttopohfkikg.supabase.co/storage/v1/object/public/ubc-buddies-profile-images/public/';
 
     return (
-        <div className="content" style={{ marginTop: '100px' }}>
+        <div className="content content-margin-top">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="text-center card-box">
-                            <div className="member-card pt-2 pb-2">
+                            <div className="member-card">
                                 <h1>Matching Information</h1>
                                 {match ? (
                                     <>
                                         <div className="thumb-lg member-thumb mx-auto">
                                             <Image
                                                 src={match && match.profile_image 
-                                                    ? `${supabaseBaseUrl}${match.profile_image.split('/').pop()}` // match.profile_image からファイル名だけを抽出してSupabase URLに組み込む
-                                                    : "assets/images/faces/face15.jpg"}  // プロフィール画像がない場合にデフォルト画像を表示
-                                                className="rounded-circle img-thumbnail"
+                                                    ? `${supabaseBaseUrl}${match.profile_image.split('/').pop()}`
+                                                    : "assets/images/faces/face15.jpg"}
+                                                className="rounded-circle img-thumbnail profile-image"
                                                 alt="profile-image"
                                                 width={240}
                                                 height={240}
-                                                style={{ aspectRatio: '1/1' }}
                                             />
                                         </div>
                                         <h1 className='mt-3'>{match.name}</h1>
-                                        <p className="text-white" style={{ fontSize: '24px' }}>Age: {match.age}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px'  }}>Sex: {match.sex}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Instagram: {match.contact_address}</p>
-                                        <p className="text-white" style={{ marginTop: '-15px', fontSize: '24px' }}>Bio: {match.bio}</p>
+                                        <p className="text-white-large">Age: {match.age}</p>
+                                        <p className="text-white-large mt-negative">Sex: {match.sex}</p>
+                                        <p className="text-white-large mt-negative">Instagram: {match.contact_address}</p>
+                                        <p className="text-white-large mt-negative">Bio: {match.bio}</p>
                                         {loading ?
-                                            <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Loading...</button>
+                                            <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light btn-large">Loading...</button>
                                         :
-                                            <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light" onClick={handleDoneClick} style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Done</button>
+                                            <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light btn-large" onClick={handleDoneClick}>Done</button>
                                         }
                                     </>
                                 ) : (

@@ -1,19 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { submitReview } from '../services/api';
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '10px',
-        width: '80%',
-    },
-};
+import 'src/styles/ReviewModal.css';  // 作成したCSSファイルをインポート
 
 Modal.setAppElement('#__next');
 
@@ -44,12 +32,12 @@ export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) 
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Submit Review"
-            style={customStyles}
+            className="modal-content"  // CSSクラスを使用
         >
             <h2 className='text-dark'>Submit Review</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label className='text-dark' style={{ fontSize: '24px', marginRight: '10px' }}>Rating:</label>
+                    <label className='text-dark'>Rating:</label>
                     <select className='custom-select mb-3' 
                         id="inputGroupSelect01" 
                         value={rating}
@@ -64,13 +52,13 @@ export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) 
                     </select>
                 </div>
                 {loading?
-                    <button className='btn btn-danger mb-3' style={{ fontSize: '24px', borderRadius: '5px' }}>Loading...</button>
+                    <button className='btn btn-danger mb-3 btn-large'>Loading...</button>
                 :
-                    <button type="submit" className='btn btn-danger mb-3' style={{ fontSize: '24px', borderRadius: '5px' }}>Submit Review</button>
+                    <button type="submit" className='btn btn-danger mb-3 btn-large'>Submit Review</button>
                 }
                 {message && <p>{message}</p>}
             </form>
-            <button onClick={onRequestClose} className='btn' style={{ fontSize: '24px', borderRadius: '5px', color: 'black' }}>×</button>
+            <button onClick={onRequestClose} className='btn btn-large'>×</button>
         </Modal>
     );
 }

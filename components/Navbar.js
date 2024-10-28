@@ -69,14 +69,14 @@ const Navbar = () => {
             <img
               src="/images/logo.svg"
               alt="logo"
-              style={{marginLeft: '75px'}}
+              className="navbar-logo"
               width={100}
             />
           </a>
         </Link>
       </div>
       <div className="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-        <ul className="navbar-nav navbar-nav-right" style={{ marginLeft: 'auto' }}>
+        <ul className="navbar-nav navbar-nav-right navbar-menu-right">
           <li className="nav-item dropdown">
             <Dropdown>
               <Dropdown.Toggle as="a" className="nav-link count-indicator">
