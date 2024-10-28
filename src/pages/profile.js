@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getProfile } from '../../services/api';
 import Image from 'next/image';
 import Link from 'next/link';
-import '../styles/profile.module.css'; // CSSファイルをインポート
+import '../styles/Profile.module.css'; // CSSファイルをインポート
 
 export default function Profile() {
     const [profile, setProfile] = useState(null);
