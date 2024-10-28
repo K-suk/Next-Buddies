@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faProjectDiagram, faUser, faCog, faSignOutAlt, faThLarge, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { getCurrentMatch, getProfile } from '../services/api';
-import '../src/styles/Navbar.module.css';
+import styles from '../src/styles/Navbar.module.css';
 
 const Navbar = () => {
   const router = useRouter();
   const [isSuperuser, setIsSuperuser] = useState(false);
   const [profile, setProfile] = useState(null);
-  const [matchingStatue, setMatchingStatus] = useState('');
+  const [matchingStatus, setMatchingStatus] = useState('');
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
     };
 
     const handleRouteChange = (url) => {
-      if (url === '/profile', url === '/home') {
+      if (url === '/profile' || url === '/home') {
         fetchProfile();
       }
     };
@@ -65,19 +65,19 @@ const Navbar = () => {
   return (
     <nav className="navbar p-0 fixed-top d-flex flex-row">
       <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <Link href={'/home'} legacyBehavior passHref>
+        <Link href="/home" legacyBehavior passHref>
           <a className="navbar">
             <img
               src="/images/logo.svg"
               alt="logo"
-              className="navbar-logo"
+              className={styles['navbar-logo']}
               width={100}
             />
           </a>
         </Link>
       </div>
       <div className="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-        <ul className="navbar-nav navbar-nav-right navbar-menu-right">
+        <ul className={`navbar-nav navbar-nav-right ${styles['navbar-menu-right']}`}>
           <li className="nav-item dropdown">
             <Dropdown>
               <Dropdown.Toggle as="a" className="nav-link count-indicator">
@@ -89,7 +89,7 @@ const Navbar = () => {
                     height={30}
                     className="img-xs rounded-circle"
                   />
-                  <p className="mb-0 d-none d-sm-block navbar-profile-name">Menu</p>
+                  <p className={`mb-0 d-none d-sm-block ${styles['navbar-profile-name']}`}>Menu</p>
                   <FontAwesomeIcon icon={faChevronDown} className="d-none d-sm-block" />
                 </div>
               </Dropdown.Toggle>

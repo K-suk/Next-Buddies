@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '../../services/api';
-import '../styles/Login.module.css'; // CSSファイルをインポート
+import styles from '../styles/Login.module.css'; // CSSファイルをインポート
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -11,6 +11,7 @@ export default function Login() {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -51,17 +52,17 @@ export default function Login() {
     };
 
     return (
-        <section className="vh-100">
+        <section className={styles['vh-100']}>
             <div className="container h-100 py-5">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card transparent-card">
+                        <div className={`card ${styles['transparent-card']}`}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
                                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                                         alt="login form"
-                                        className="img-fluid rounded-image"
+                                        className={`img-fluid ${styles['rounded-image']}`}
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
@@ -75,7 +76,7 @@ export default function Login() {
                                                 />
                                             </div>
 
-                                            <h5 className="fw-normal mb-3 pb-3 login-header">
+                                            <h5 className={`fw-normal mb-3 pb-3 ${styles['login-header']}`}>
                                                 Sign into your account
                                             </h5>
 
@@ -86,7 +87,7 @@ export default function Login() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
                                                     required
                                                 />
@@ -99,7 +100,7 @@ export default function Login() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Password"
                                                     required
                                                 />
@@ -115,11 +116,11 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className="small text-white-link" onClick={handlePasswordReset}>
+                                            <a className={`small ${styles['text-white-link']}`} onClick={handlePasswordReset}>
                                                 Forgot password?
                                             </a>
-                                            <p className="mb-5 pb-lg-2 text-white text-white-link" onClick={handleSignUp}>
-                                                Don&apos;t have an account? <a href="#!" className="text-white-link">Register here</a>
+                                            <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`} onClick={handleSignUp}>
+                                                Don&apos;t have an account? <a href="#!" className={styles['text-white-link']}>Register here</a>
                                             </p>
                                         </form>
                                     </div>

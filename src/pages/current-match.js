@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getCurrentMatch, submitReview } from '../../services/api';
 import ReviewModal from '../../components/ReviewModal';
 import Image from 'next/image';
-import '../styles/CurrentMatch.module.css';  // CSSファイルをインポート
+import styles from '../styles/CurrentMatch.module.css';  // CSSモジュールをインポート
 
 export default function CurrentMatch() {
     const [match, setMatch] = useState(null);
@@ -49,12 +49,12 @@ export default function CurrentMatch() {
     const supabaseBaseUrl = 'https://rfljgrsesttopohfkikg.supabase.co/storage/v1/object/public/ubc-buddies-profile-images/public/';
 
     return (
-        <div className="content content-margin-top">
+        <div className={styles['content-margin-top']}>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <div className="text-center card-box">
-                            <div className="member-card">
+                        <div className={`text-center ${styles['card-box']}`}>
+                            <div className={styles['member-card']}>
                                 <h1>Matching Information</h1>
                                 {match ? (
                                     <>
@@ -63,21 +63,21 @@ export default function CurrentMatch() {
                                                 src={match && match.profile_image 
                                                     ? `${supabaseBaseUrl}${match.profile_image.split('/').pop()}`
                                                     : "assets/images/faces/face15.jpg"}
-                                                className="rounded-circle img-thumbnail profile-image"
+                                                className={`${styles['profile-image']} img-thumbnail`}
                                                 alt="profile-image"
                                                 width={240}
                                                 height={240}
                                             />
                                         </div>
                                         <h1 className='mt-3'>{match.name}</h1>
-                                        <p className="text-white-large">Age: {match.age}</p>
-                                        <p className="text-white-large mt-negative">Sex: {match.sex}</p>
-                                        <p className="text-white-large mt-negative">Instagram: {match.contact_address}</p>
-                                        <p className="text-white-large mt-negative">Bio: {match.bio}</p>
+                                        <p className={styles['text-white-large']}>Age: {match.age}</p>
+                                        <p className={`${styles['text-white-large']} ${styles['mt-negative']}`}>Sex: {match.sex}</p>
+                                        <p className={`${styles['text-white-large']} ${styles['mt-negative']}`}>Instagram: {match.contact_address}</p>
+                                        <p className={`${styles['text-white-large']} ${styles['mt-negative']}`}>Bio: {match.bio}</p>
                                         {loading ?
-                                            <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light btn-large">Loading...</button>
+                                            <button type="button" className={`btn btn-danger mt-3 waves-effect w-md waves-light ${styles['btn-large']}`}>Loading...</button>
                                         :
-                                            <button type="button" className="btn btn-danger mt-3 waves-effect w-md waves-light btn-large" onClick={handleDoneClick}>Done</button>
+                                            <button type="button" className={`btn btn-danger mt-3 waves-effect w-md waves-light ${styles['btn-large']}`} onClick={handleDoneClick}>Done</button>
                                         }
                                     </>
                                 ) : (

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { getProfile } from '../../services/api';
 import { useEffect } from 'react';
-import '../styles/SemiComp.module.css'; // CSSファイルをインポート
+import styles from '../styles/SemiComp.module.css'; // CSSファイルをインポート
 
 export default function Wait() {
     const router = useRouter();
@@ -33,13 +33,13 @@ export default function Wait() {
     }, []);
 
     return (
-        <div className="container container-padding-top">
+        <div className={`container ${styles['container-padding-top']}`}>
             <img
                 src="/images/BUDDIES.png"
                 alt="login form"
-                className="img-fluid mx-auto d-block rounded-image"
+                className={`img-fluid mx-auto d-block ${styles['rounded-image']}`}
             />
-            <h1 className="text-center-message">Please wait for your buddy to finish the matching</h1>
+            <h1 className={styles['text-center-message']}>Please wait for your buddy to finish the matching</h1>
         </div>
     );
 }

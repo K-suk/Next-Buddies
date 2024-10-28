@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import api from '../../services/api';
-import '../styles/SignUp.module.css'; // CSSファイルをインポート
+import styles from '../styles/SignUp.module.css'; // CSSファイルをインポート
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
@@ -63,17 +63,17 @@ export default function SignUp() {
     };
 
     return (
-        <section className="vh-100">
+        <section className={styles['vh-100']}>
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card transparent-card">
+                        <div className={styles['transparent-card']}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
                                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                                         alt="signup form"
-                                        className="img-fluid rounded-left-image"
+                                        className={`img-fluid ${styles['rounded-left-image']}`}
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
@@ -87,7 +87,7 @@ export default function SignUp() {
                                                     width={200}
                                                 />
                                             </div>
-                                            <h5 className="fw-normal pb-3 header-spacing">Sign Up</h5>
+                                            <h5 className={`fw-normal pb-3 ${styles['header-spacing']}`}>Sign Up</h5>
 
                                             <div className="form-outline mb-4">
                                                 <input
@@ -95,7 +95,7 @@ export default function SignUp() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
                                                     required
                                                 />
@@ -107,7 +107,7 @@ export default function SignUp() {
                                                     name="name"
                                                     value={formData.name}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Your Name"
                                                     maxLength="50"
                                                     required
@@ -119,7 +119,7 @@ export default function SignUp() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Password"
                                                     required
                                                 />
@@ -131,7 +131,7 @@ export default function SignUp() {
                                                     name="re_password"
                                                     value={formData.re_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Retype Password"
                                                     required
                                                 />
@@ -147,8 +147,8 @@ export default function SignUp() {
 
                                             {message && <p className="text-success">{message}</p>}
 
-                                            <p className="mb-5 pb-lg-2 text-white text-white-link" onClick={handleLogin}>
-                                                Already have an account? <a href="#!" className="text-white-link">Login here</a>
+                                            <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`} onClick={handleLogin}>
+                                                Already have an account? <a href="#!" className={styles['text-white-link']}>Login here</a>
                                             </p>
                                         </form>
                                     </div>

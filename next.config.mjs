@@ -50,14 +50,7 @@ const nextConfig = {
     domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co', 'mdbcdn.b-cdn.net'],
   },
 
-  webpack: (config, { isServer }) => {
-    // 本番環境で eval を無効にし、source-map を使用する設定
-    config.devtool = isServer ? 'source-map' : false;
-    return config;
-  },
-
   async headers() {
-    // CSPで使用する nonce を生成
     const nonce = crypto.randomBytes(16).toString('base64');
 
     return [

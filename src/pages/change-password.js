@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { changePassword } from '../../services/api';
-import '../styles/ChangePassword.module.css';  // CSSファイルをインポート
+import styles from '../styles/ChangePassword.module.css'; // CSSモジュールをインポート
 
 export default function ChangePassword() {
     const [formData, setFormData] = useState({
@@ -53,17 +53,17 @@ export default function ChangePassword() {
     };
 
     return (
-        <section className="vh-100">
-            <div className="container container-margin-top">
+        <section className={styles['vh-100']}>
+            <div className={`container ${styles['container-margin-top']}`}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card transparent-card">
+                        <div className={`card ${styles['transparent-card']}`}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-white">
                                         <form onSubmit={handleSubmit}>
 
-                                            <h5 className="fw-normal mb-3 pb-3 change-header">
+                                            <h5 className={`fw-normal mb-3 pb-3 ${styles['change-header']}`}>
                                                 Change Your Password
                                             </h5>
 
@@ -73,7 +73,7 @@ export default function ChangePassword() {
                                                     name="current_password"
                                                     value={formData.current_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Current Password"
                                                     required
                                                 />
@@ -85,7 +85,7 @@ export default function ChangePassword() {
                                                     name="new_password"
                                                     value={formData.new_password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="New Password"
                                                     required
                                                 />
@@ -94,13 +94,13 @@ export default function ChangePassword() {
                                             <div className="pt-1 mb-4">
                                                 {loading ?
                                                     <button
-                                                        className="btn btn-warning btn-lg btn-block btn-large"
+                                                        className={`btn btn-warning btn-lg btn-block ${styles['btn-large']}`}
                                                     >
                                                         Loading...
                                                     </button>
                                                 :
                                                     <button
-                                                        className="btn btn-warning btn-lg btn-block btn-large"
+                                                        className={`btn btn-warning btn-lg btn-block ${styles['btn-large']}`}
                                                         type="submit"
                                                     >
                                                         Change Password

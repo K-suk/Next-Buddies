@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import api from '../../../../services/api';
-import '../../../styles/Activate.module.css'; // 新しいCSSファイルをインポート
+import styles from '../../../styles/Activate.module.css'; // CSSモジュールをインポート
 
 export default function Activate() {
     const router = useRouter();
     const { uid, token } = router.query;
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false); // Loading状態を追加
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (uid && token) {
@@ -26,11 +26,13 @@ export default function Activate() {
     };
 
     return (
-        <div className="activate-container">
+        <div className={styles['activate-container']}>
             <h1>Account Activation</h1>
-            <p className="activate-message">{message}</p>
-            <p className="activate-message">Even though it says Activation failed, most of time it success. So please try to login. If it still does not work, email to buddies872@gmail.com</p>
-            <button className="activate-button" onClick={handleLogin}>Go to Login Page</button>
+            <p className={styles['activate-message']}>{message}</p>
+            <p className={styles['activate-message']}>
+                Even though it says Activation failed, most of the time it succeeds. So please try to login. If it still does not work, email to buddies872@gmail.com
+            </p>
+            <button className={styles['activate-button']} onClick={handleLogin}>Go to Login Page</button>
         </div>
     );
 }
