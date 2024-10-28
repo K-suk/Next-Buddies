@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { getProfile } from '../../services/api';
 import { useEffect } from 'react';
-import '../styles/SemiComp.css'; // CSSファイルをインポート
+import '../styles/SemiComp.module.css'; // CSSファイルをインポート
 
 export default function Wait() {
     const router = useRouter();

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import api from '../../../../services/api';
-import '../../../styles/Activate.css'; // 新しいCSSファイルをインポート
+import '../../../styles/Activate.module.css'; // 新しいCSSファイルをインポート
 
 export default function Activate() {
     const router = useRouter();

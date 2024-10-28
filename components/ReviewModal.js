@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { submitReview } from '../services/api';
-import 'src/styles/ReviewModal.css';  // 作成したCSSファイルをインポート
+import '../src/styles/ReviewModal.module.css';
 
 Modal.setAppElement('#__next');
 

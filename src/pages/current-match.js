@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getCurrentMatch, submitReview } from '../../services/api';
 import ReviewModal from '../../components/ReviewModal';
 import Image from 'next/image';
-import '../styles/CurrentMatch.css';  // CSSファイルをインポート
+import '../styles/CurrentMatch.module.css';  // CSSファイルをインポート
 
 export default function CurrentMatch() {
     const [match, setMatch] = useState(null);

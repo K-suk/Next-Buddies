@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getProfile, updateProfile } from '../../services/api';
 import Image from 'next/image';
 import { supabase } from '../../supabaseClient';
-import '../styles/ProfileUpdate.css'; // CSSファイルをインポート
+import '../styles/ProfileUpdate.module.css'; // CSSファイルをインポート
 
 export default function ProfileUpdate() {
     const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import api from '../../services/api';
 import { useRouter } from 'next/router';
-import '../styles/PasswordResetRequest.css'; // CSSファイルをインポート
+import '../styles/PasswordResetRequest.module.css'; // CSSファイルをインポート
 
 export default function PasswordResetRequest() {
     const [email, setEmail] = useState('');

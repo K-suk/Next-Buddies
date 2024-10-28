@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faProjectDiagram, faUser, faCog, faSignOutAlt, faThLarge, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { getCurrentMatch, getProfile } from '../services/api';
+import '../src/styles/Navbar.module.css';
 
 const Navbar = () => {
   const router = useRouter();

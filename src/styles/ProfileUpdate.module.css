@@ -16,3 +16,8 @@
     font-size: 24px;
     border-radius: 5px;
 }
+
+/* あとから変更したやつ */
+.form-control:focus {
+    color: #fff; /* フォーカス時のテキストカラーを白に設定 */
+}

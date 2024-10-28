@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import api from '../../services/api';
-import '../styles/SignUp.css'; // CSSファイルをインポート
+import '../styles/SignUp.module.css'; // CSSファイルをインポート
 
 export default function SignUp() {
     const [formData, setFormData] = useState({

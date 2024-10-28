@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { changePassword } from '../../services/api';
-import '../styles/ChangePassword.css';  // CSSファイルをインポート
+import '../styles/ChangePassword.module.css';  // CSSファイルをインポート
 
 export default function ChangePassword() {
     const [formData, setFormData] = useState({

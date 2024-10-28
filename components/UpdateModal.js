@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { updateProfile } from '../services/api';
-import 'src/styles/UpdateModal.css';  // 作成したCSSファイルをインポート
+import '../src/styles/UpdateModal.module.css';  // 作成したCSSファイルをインポート
 
 Modal.setAppElement('#__next');
 
