@@ -20,14 +20,11 @@
 
 .input-white {
     color: white !important; /* 入力中も文字色を白色に固定 */
-    background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .input-white:focus {
     color: white !important; /* 入力時の文字色を白色に維持 */
     background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.5);
     outline: none;
     box-shadow: none;
 }
