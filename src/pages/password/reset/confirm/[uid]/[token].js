@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import api from '../../../../../../services/api';
 import { useRouter } from 'next/router';
-import '../../../styles/PasswordResetConfirm.css';  // CSSファイルをインポート
+import 'src/styles/PasswordResetConfirm.css';  // CSSファイルをインポート
 
 export default function PasswordResetConfirm() {
     const [formData, setFormData] = useState({
