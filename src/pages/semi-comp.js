@@ -9,16 +9,13 @@ export default function Wait() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                // console.log('Fetching user data...');
-                const profile = await getProfile(); // getProfile を使用してユーザー情報を取得
-                // console.log('User data received:', profile);
+                const profile = await getProfile();
 
-                // ユーザーがマッチング中かどうかをチェック
                 if (profile.cur_matching) {
-                    router.push('/current-match'); // マッチング相手がいる場合、current-match.jsにリダイレクト
+                    router.push('/current-match');
                 } else if (profile.wait) {
-                    router.push('/wait'); // 待機中の場合、wait.jsにリダイレクト
-                } else if (profile.semi_comp) {  // semi_comp が true ならば、/semi-comp にリダイレクト
+                    router.push('/wait');
+                } else if (profile.semi_comp) {
                     router.push('/semi-comp');
                 } else {
                     router.push('/home')
@@ -27,7 +24,7 @@ export default function Wait() {
                 console.error('Error fetching user data:', error);
                 if (error.response && error.response.status === 401) {
                     console.error('Unauthorized. Redirecting to login.');
-                    router.push('/login'); // 認証エラーが発生した場合、ログインページにリダイレクト
+                    router.push('/login');
                 }
             }
         };

@@ -94,29 +94,5 @@ export default function CurrentMatch() {
                 </div>
             </div>
         </div>
-        // <div>
-        //     {match ? (
-        //         <div>
-        //             <h1>Current Match</h1>
-        //             <p>Name: {match.name}</p>
-        //             <p>Email: {match.email}</p>
-        //             <p>Contact: {match.contact_address}</p>
-        //             {averageRating !== null && !isNaN(averageRating) ? (
-        //                 <p>Partner's average rating: {averageRating.toFixed(2)}</p>
-        //             ) : (
-        //                 <p>No rating available</p>
-        //             )}
-        //             <button onClick={handleDoneClick}>Done</button>
-        //         </div>
-        //     ) : (
-        //         <p>No current match found.</p>
-        //     )}
-            // <ReviewModal
-            //     isOpen={isReviewModalOpen}
-            //     onRequestClose={() => setIsReviewModalOpen(false)}
-            //     onReviewSubmit={handleReviewSubmit}
-            // />
-        //     <button onClick={handleLogout}>Logout</button>
-        // </div>
     );
 }

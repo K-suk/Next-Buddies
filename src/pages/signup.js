@@ -17,24 +17,67 @@ export default function SignUp() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     if (!formData.email.endsWith('@student.ubc.ca')) {
+    //         setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
+    //         return; // 条件を満たさない場合、APIリクエストを送信しない
+    //     }
+    //     // フォーム送信データをログに出力
+    //     // console.log('Form Data:', formData);
+    //     setLoading(true);
+    //     try {
+    //         // console.log('Sending API request to create user...');
+    //         const response = await api.post('/auth/users/', formData);
+            
+    //         // 成功時のレスポンスをログに出力
+    //         // console.log('Signup Response:', response.data);
+    //         setMessage('User registered successfully. Please check your email to activate your account.');
+    //     } catch (error) {
+    //         // エラーレスポンスの詳細をログに出力
+    //         if (error.response) {
+    //             console.error('Signup Error Response:', error.response.data);
+    //         } else {
+    //             console.error('Signup Error:', error.message);
+    //         }
+    //         setMessage('Registration failed. Please try again.');
+    //     }
+    //     setLoading(false);
+    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
+        // Emailバリデーション
         if (!formData.email.endsWith('@student.ubc.ca')) {
             setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
-            return; // 条件を満たさない場合、APIリクエストを送信しない
+            return;
         }
-        // フォーム送信データをログに出力
-        // console.log('Form Data:', formData);
+    
+        // 名前のバリデーション (特殊文字を拒否)
+        const namePattern = /^[A-Za-z\s]+$/;
+        if (!namePattern.test(formData.name)) {
+            setMessage('Name can only contain letters and spaces.');
+            return;
+        }
+    
+        // パスワードの一致確認
+        if (formData.password !== formData.re_password) {
+            setMessage('Passwords do not match.');
+            return;
+        }
+    
+        // パスワード強度チェック
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(formData.password)) {
+            setMessage('Password must be at least 8 characters, include an uppercase letter and a number.');
+            return;
+        }
+    
         setLoading(true);
         try {
-            // console.log('Sending API request to create user...');
             const response = await api.post('/auth/users/', formData);
-            
-            // 成功時のレスポンスをログに出力
-            // console.log('Signup Response:', response.data);
             setMessage('User registered successfully. Please check your email to activate your account.');
         } catch (error) {
-            // エラーレスポンスの詳細をログに出力
             if (error.response) {
                 console.error('Signup Error Response:', error.response.data);
             } else {
@@ -99,6 +142,7 @@ export default function SignUp() {
                                                     className="form-control form-control-lg"
                                                     placeholder="Your Name"
                                                     style={{ color: 'white' }}
+                                                    maxLength="50"
                                                     required
                                                 />
                                             </div>

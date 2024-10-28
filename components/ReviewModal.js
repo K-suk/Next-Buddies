@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Modal from 'react-modal'; // モーダル表示に使用するライブラリ
+import Modal from 'react-modal';
 import { submitReview } from '../services/api';
 
-// モーダルのスタイルを定義
 const customStyles = {
     content: {
         top: '50%',
@@ -16,21 +15,24 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#__next'); // アプリケーションのルート要素を指定
+Modal.setAppElement('#__next');
 
 export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) {
     const [rating, setRating] = useState(0);
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false); // Loading状態を追加
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (rating < 1 || rating > 5) {
+            setMessage('Please select a valid rating between 1 and 5.');
+            return;
+        }
         setLoading(true);
         try {
-            // console.log('Submitting rating:', rating); // ここでratingが正しく表示されるか確認
             const newAverageRating = await submitReview(rating);
             onReviewSubmit(newAverageRating);
-            // onRequestClose(); // モーダルを閉じる部分を一時的にコメントアウト
         } catch (error) {
             console.error('Error submitting review:', error);
         }
@@ -42,21 +44,12 @@ export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) 
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Submit Review"
-            style={customStyles} // モーダルのスタイルを適用
+            style={customStyles}
         >
             <h2 className='text-dark'>Submit Review</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label className='text-dark' style={{ fontSize: '24px', marginRight: '10px' }}>Rating:</label>
-                    {/* <input
-                        type="number"
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}
-                        min="1"
-                        max="5"
-                        style={{ width: '50px' }}
-                        required
-                    /> */}
                     <select className='custom-select mb-3' 
                         id="inputGroupSelect01" 
                         value={rating}

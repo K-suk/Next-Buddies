@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from 'react-modal'; // モーダル表示に使用するライブラリ
+import Modal from 'react-modal';
 import { updateProfile } from '../services/api';
 
 const customStyles = {
@@ -15,7 +15,7 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#__next'); // アプリケーションのルート要素を指定
+Modal.setAppElement('#__next');
 
 export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate }) {
     const [formData, setFormData] = useState({
@@ -24,19 +24,36 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
         age: '',
         bio: '',
     });
-    const [loading, setLoading] = useState(false); // Loading状態を追加
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // ページのリロードを防ぐ
+        e.preventDefault();
+
+        if (formData.sex !== 'Male' && formData.sex !== 'Female') {
+            setMessage('Please select a valid sex.');
+            return;
+        }
+
+        const age = parseInt(formData.age, 10);
+        if (isNaN(age) || age <= 0 || age > 100) {
+            setMessage('Please enter a valid age.');
+            return;
+        }
+
+        const usernamePattern = /^[A-Za-z0-9._]+$/;
+        if (!usernamePattern.test(formData.contact_address)) {
+            setMessage('Instagram username can only contain letters, numbers, dots, and underscores.');
+            return;
+        }
         setLoading(true);
         try {
-            await updateProfile(formData); // APIを使ってプロフィールを更新
-            onProfileUpdate(); // プロフィール更新後に外部関数を呼び出す（正しい関数名に修正）
-            onRequestClose(); // モーダルを閉じる
+            await updateProfile(formData);
+            onProfileUpdate();
+            onRequestClose();
         } catch (error) {
             console.error('Profile Update Error:', error);
         }
@@ -81,6 +98,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             required
                                             className="form-control"
                                             style={{ color: 'white' }}
+                                            maxLength="50"
                                         />
                                     </div>
                                     <div className="form-group">
@@ -93,6 +111,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             required
                                             className="form-control"
                                             style={{ color: 'white' }}
+                                            maxLength="5"
                                         />
                                     </div>
                                     <div className="form-group">
@@ -103,6 +122,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             placeholder="Bio"
                                             className="form-control"
                                             style={{ color: 'white' }}
+                                            maxLength="250"
                                         />
                                     </div>
                                     {loading ?

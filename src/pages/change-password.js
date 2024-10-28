@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { changePassword } from '../../services/api'; // services/api.js から changePassword 関数をインポート
+import { changePassword } from '../../services/api';
 
 export default function ChangePassword() {
     const [formData, setFormData] = useState({
@@ -8,11 +8,10 @@ export default function ChangePassword() {
         new_password: '',
     });
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false); // Loading状態を追加
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
-        // ログインしていない場合はリダイレクト
         const token = localStorage.getItem('access_token');
         if (!token) {
             router.push('/login');
@@ -25,6 +24,20 @@ export default function ChangePassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // 新しいパスワードの強度チェック
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(formData.new_password)) {
+            setMessage('New password must be at least 8 characters, include an uppercase letter, and a number.');
+            return;
+        }
+
+        // 新しいパスワードと現在のパスワードの比較
+        if (formData.current_password === formData.new_password) {
+            setMessage('New password cannot be the same as the current password.');
+            return;
+        }
+
         setLoading(true);
         try {
             await changePassword(formData.current_password, formData.new_password);
@@ -41,7 +54,7 @@ export default function ChangePassword() {
     };
 
     return (
-        <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%);' }}>
+        <section className="vh-100" style={{ background: 'linear-gradient(to bottom, #000066 0%, #cc00cc 100%)' }}>
             <div className="container" style={{ marginTop: '130px' }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
@@ -58,7 +71,6 @@ export default function ChangePassword() {
                                             <div className="form-outline mb-4">
                                                 <input
                                                     type="password"
-                                                    id="form2Example17"
                                                     name="current_password"
                                                     value={formData.current_password}
                                                     onChange={handleChange}
@@ -72,7 +84,6 @@ export default function ChangePassword() {
                                             <div className="form-outline mb-4">
                                                 <input
                                                     type="password"
-                                                    id="form2Example27"
                                                     name="new_password"
                                                     value={formData.new_password}
                                                     onChange={handleChange}
@@ -84,7 +95,7 @@ export default function ChangePassword() {
                                             </div>
 
                                             <div className="pt-1 mb-4">
-                                                {loading?
+                                                {loading ?
                                                     <button
                                                         className="btn btn-warning btn-lg btn-block"
                                                     >

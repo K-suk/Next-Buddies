@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile, updateProfile } from '../../services/api';
 import Image from 'next/image';
-import { supabase } from '../../supabaseClient'; // Supabaseクライアントをインポート
+import { supabase } from '../../supabaseClient';
 
 export default function ProfileUpdate() {
     const [formData, setFormData] = useState({
@@ -10,9 +10,9 @@ export default function ProfileUpdate() {
         contact_address: '',
         age: '',
         bio: '',
-        profile_image: '', // URLで画像を扱う
+        profile_image: '',
     });
-    const [previewImage, setPreviewImage] = useState(''); // プレビュー用の画像URL
+    const [previewImage, setPreviewImage] = useState('');
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -26,9 +26,9 @@ export default function ProfileUpdate() {
                     contact_address: userData.contact_address || '',
                     age: userData.age || '',
                     bio: userData.bio || '',
-                    profile_image: userData.profile_image || '', // URLをセット
+                    profile_image: userData.profile_image || '',
                 });
-                setPreviewImage(userData.profile_image); // プレビュー用画像をセット
+                setPreviewImage(userData.profile_image);
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
@@ -42,57 +42,64 @@ export default function ProfileUpdate() {
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-    
-        // ファイルが選択されたか確認する
-        if (!file) {
-            // console.log("No file selected");
+        
+        if (!file) return;
+
+        // 画像のファイル形式チェック（JPG, PNG のみ許可）
+        const allowedTypes = ['image/jpeg', 'image/png'];
+        if (!allowedTypes.includes(file.type)) {
+            setMessage('Only JPG and PNG files are allowed.');
             return;
         }
-    
-        // console.log("File selected:", file);
-    
-        // Supabaseに画像をアップロード
+
         try {
-            // console.log("Uploading image to Supabase...");
-    
             const { data, error } = await supabase.storage
-                .from('ubc-buddies-profile-images')  // バケット名が正しいか確認
+                .from('ubc-buddies-profile-images')
                 .upload(`public/${file.name}`, file, {
                     cacheControl: '3600',
                     upsert: true,
                 });
-    
+
             if (error) {
                 console.error('Error uploading image:', error);
                 return;
             }
-    
-            // console.log("Image uploaded successfully:", data);
-    
-            // アップロードされた画像のURLを取得
+
             const { data: publicUrlData, error: publicUrlError } = supabase.storage
                 .from('ubc-buddies-profile-images')
                 .getPublicUrl(`public/${file.name}`);
-    
+
             if (publicUrlError) {
                 console.error('Error getting public URL:', publicUrlError);
                 return;
             }
-    
+
             const imageUrl = publicUrlData.publicUrl;
-            // console.log("Image URL:", imageUrl);
-    
-            // フォームデータとプレビュー画像を更新
             setFormData({ ...formData, profile_image: imageUrl });
             setPreviewImage(imageUrl);
-    
+
         } catch (err) {
             console.error("Unexpected error:", err);
         }
-    };    
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // 名前フィールドのバリデーション
+        const namePattern = /^[A-Za-z\s]+$/;
+        if (!namePattern.test(formData.name)) {
+            setMessage('Name can only contain letters and spaces.');
+            return;
+        }
+
+        // 年齢フィールドの範囲チェック
+        const age = parseInt(formData.age, 10);
+        if (isNaN(age) || age <= 0 || age > 120) {
+            setMessage('Please enter a valid age.');
+            return;
+        }
+
         setLoading(true);
 
         const updatedData = {
@@ -100,13 +107,13 @@ export default function ProfileUpdate() {
             contact_address: formData.contact_address,
             age: formData.age,
             bio: formData.bio,
-            profile_image: formData.profile_image, // URLを送信
+            profile_image: formData.profile_image,
         };
 
         try {
-            await updateProfile(updatedData); // API でプロフィールを更新
+            await updateProfile(updatedData);
             setMessage('Profile updated successfully.');
-            router.push('/profile'); // 更新後にプロフィールページへリダイレクト
+            router.push('/profile');
         } catch (error) {
             console.error('Profile Update Error:', error);
             setMessage('Failed to update profile. Please try again.');
@@ -123,7 +130,6 @@ export default function ProfileUpdate() {
                             <form onSubmit={handleSubmit} className="member-card pt-2 pb-2">
                                 <h1>Edit Profile</h1>
                                 <div className="thumb-lg member-thumb mx-auto">
-                                    {/* 画像のプレビューを表示 */}
                                     <Image
                                         src={previewImage || "assets/images/faces/face15.jpg"}
                                         className="rounded-circle img-thumbnail"
@@ -153,6 +159,7 @@ export default function ProfileUpdate() {
                                         required
                                         className="form-control"
                                         style={{ color: 'white' }}
+                                        maxLength="50"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -165,6 +172,7 @@ export default function ProfileUpdate() {
                                         required
                                         className="form-control"
                                         style={{ color: 'white' }}
+                                        maxLength="50"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -177,6 +185,7 @@ export default function ProfileUpdate() {
                                         required
                                         className="form-control"
                                         style={{ color: 'white' }}
+                                        maxLength="5"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -187,6 +196,7 @@ export default function ProfileUpdate() {
                                         placeholder="Bio"
                                         className="form-control"
                                         style={{ color: 'white' }}
+                                        maxLength="250"
                                     />
                                 </div>
                                 {loading ?

@@ -5,45 +5,42 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faProjectDiagram, faUser, faCog, faSignOutAlt, faThLarge, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { getCurrentMatch, getProfile } from '../services/api'; // getProfileをインポート
+import { getCurrentMatch, getProfile } from '../services/api';
 
 const Navbar = () => {
   const router = useRouter();
-  const [isSuperuser, setIsSuperuser] = useState(false); // is_superuserステータスを管理するstate
-  const [profile, setProfile] = useState(null); // 初期状態はnull
+  const [isSuperuser, setIsSuperuser] = useState(false);
+  const [profile, setProfile] = useState(null);
   const [matchingStatue, setMatchingStatus] = useState('');
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const profileData = await getProfile(); // ユーザープロファイルを取得
-        setProfile(profileData); // プロフィールデータをセット
+        const profileData = await getProfile();
+        setProfile(profileData);
         setIsSuperuser(profileData.is_superuser);
       } catch (error) {
         console.error('Failed to fetch profile data', error);
       }
     };
 
-    // ページ遷移のたびにプロフィールを再取得
     const handleRouteChange = (url) => {
       if (url === '/profile', url === '/home') {
-        fetchProfile(); // プロフィールページに遷移した際に再取得
+        fetchProfile();
       }
     };
 
-    // ルート変更時にイベントリスナーを追加
     router.events.on('routeChangeComplete', handleRouteChange);
 
-    // クリーンアップ：イベントリスナーを解除
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, [router.events]); // ルート変更時に再実行
+  }, [router.events]);
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken'); // ログアウト時にアクセストークンを削除
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    router.push('/login'); // ログアウト後、ログインページにリダイレクト
+    router.push('/login');
   };
 
   const handleProfile = () => {
@@ -58,10 +55,6 @@ const Navbar = () => {
     try {
       const response = await processMatching();
       setMatchingStatus(response.status);
-      // const matchData = await getCurrentMatch(); // マッチング後に相手がいるかを確認
-      // if (matchData) {
-      //   router.push('/current-match'); // マッチング成功後、current-match.jsにリダイレクト
-      // }
     } catch (error) {
       console.error('Error processing matching:', error);
       setMatchingStatus('Error processing matching.');
@@ -73,7 +66,6 @@ const Navbar = () => {
       <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
         <Link href={'/home'} legacyBehavior passHref>
           <a className="navbar">
-            {/* プロフィールデータが取得されていない場合はデフォルト画像を表示 */}
             <img
               src="/images/logo.svg"
               alt="logo"
@@ -85,19 +77,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
         <ul className="navbar-nav navbar-nav-right" style={{ marginLeft: 'auto' }}>
-          {/* is_superuser が true の場合のみ Match ボタンを表示 */}
-          {/* {isSuperuser && (
-            <li>
-              <button onClick={handleProcessMatching} className="btn btn-success waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '', fontSize: '18px', borderRadius: '5px' }}>
-                Match
-              </button>
-            </li>
-          )} */}
           <li className="nav-item dropdown">
             <Dropdown>
               <Dropdown.Toggle as="a" className="nav-link count-indicator">
                 <div className="navbar-profile">
-                  {/* プロフィールデータが取得されていない場合はデフォルト画像を表示 */}
                   <img
                     src={profile?.profile_image || "assets/images/faces/face15.jpg"}
                     alt="profile"

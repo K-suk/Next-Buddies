@@ -5,21 +5,21 @@ import UpdateModal from '../../components/UpdateModal';
 
 export default function Home() {
     const [name, setUsername] = useState('');
-    const [sex, setSex] = useState('');  // 性別
-    const [isModalOpen, setIsModalOpen] = useState(false);  // モーダルの表示状態
+    const [sex, setSex] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [queueStatus, setQueueStatus] = useState('');
     const [loading, setLoading] = useState(false);
-    const [need, setNeed] = useState(''); // need（ユーザーの希望するマッチングの種類）
+    const [need, setNeed] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const profile = await getProfile(); // ユーザー情報を取得
+                const profile = await getProfile();
                 setUsername(profile.name);
-                setSex(profile.sex); // 性別を設定
+                setSex(profile.sex);
 
-                // ユーザーがマッチング中かどうかをチェック
                 if (profile.cur_matching) {
                     router.push('/current-match');
                 } else if (profile.wait) {
@@ -31,6 +31,8 @@ export default function Home() {
                 console.error('Error fetching user data:', error);
                 if (error.response && error.response.status === 401) {
                     router.push('/login');
+                } else {
+                    setErrorMessage('Failed to load profile information. Please try again later.');
                 }
             }
         };
@@ -38,46 +40,46 @@ export default function Home() {
         fetchUserData();
     }, [router]);
 
-    // マッチング処理
     const handleAddMatching = async (updatedSex = sex) => {
+        setErrorMessage('');
         if (!need) {
-            alert('Please select a need for matching.');
+            setErrorMessage('Please select a need for matching.');
             return;
         }
 
-        // 性別が設定されていない場合、モーダルを表示してユーザーに更新を促す
         if (!updatedSex) {
             setIsModalOpen(true);
+            setErrorMessage('Please complete your profile to proceed with matching.');
             return;
         }
 
         setLoading(true);
         try {
-            const response = await addMatching(need); // needを指定してマッチング開始
+            const response = await addMatching(need);
             setQueueStatus(response.status);
             if (response.status === 'Added to male queue, waiting for match' || response.status === 'Added to female queue, waiting for match') {
                 router.push('/wait');
             } else if (response.status === 'Matched') {
                 router.push('/current-match');
+            } else {
+                setErrorMessage('Unexpected response from server. Please try again.');
             }
         } catch (error) {
             console.error('Error starting matching:', error);
-            setQueueStatus('Error starting matching.');
+            setErrorMessage('Error starting matching. Please try again later.');
         }
         setLoading(false);
     };
 
-    // 性別が未設定の際に呼び出されるプロファイル更新処理
     const handleProfileUpdate = async () => {
         try {
             const profile = await getProfile();
-            setSex(profile.sex); // 更新された性別を取得して設定
-            setIsModalOpen(false); // モーダルを閉じる
-
-            // 性別がしっかり更新されているため、そのままマッチングを続ける
+            setSex(profile.sex);
+            setIsModalOpen(false);
             handleAddMatching(profile.sex);
         } catch (error) {
             console.error('Error updating profile:', error);
+            setErrorMessage('Failed to update profile. Please try again.');
         }
     };
 
@@ -91,7 +93,6 @@ export default function Home() {
                 style={{ borderRadius: '1rem 0 0 1rem', border: 'none' }}
             />
 
-            {/* Central alignment for select */}
             <div className="text-center mb-3" style={{ width: '100%', textAlign: 'center' }}>
                 <label htmlFor="need">Select what you are looking for:</label>
                 <select 
@@ -99,7 +100,7 @@ export default function Home() {
                     value={need} 
                     onChange={(e) => setNeed(e.target.value)} 
                     className="form-select"
-                    style={{ width: '75%', height: '60px', margin: '0 auto' }} // セレクトボックスを中央寄せ
+                    style={{ width: '75%', height: '60px', margin: '0 auto' }}
                 >
                     <option value="">-- Select --</option>
                     <option value="gym">Gym Buddy (Same gender)</option>
@@ -108,6 +109,8 @@ export default function Home() {
                     <option value="dating">Dating Partner (Different gender)</option>
                 </select>
             </div>
+
+            {errorMessage && <p className="alert alert-danger text-center">{errorMessage}</p>}
 
             {loading ?
                 <button className="btn btn-danger waves-effect w-md waves-light d-block mx-auto fw-bold" style={{ padding: '20px 60px', fontSize: '24px', borderRadius: '10px' }}>Loading...</button>
@@ -118,7 +121,7 @@ export default function Home() {
             <UpdateModal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
-                onProfileUpdate={handleProfileUpdate} // プロファイル更新時の処理を指定
+                onProfileUpdate={handleProfileUpdate}
             />
         </div>
     );

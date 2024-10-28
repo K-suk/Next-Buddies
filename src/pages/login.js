@@ -16,14 +16,18 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
+        // Emailドメインのチェック
+        if (!formData.email.endsWith('@student.ubc.ca')) {
+            setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
+            return;
+        }
+    
         setLoading(true);
         try {
             const response = await login(formData.email, formData.password);
     
             // レスポンス内容をログに出力して確認
-            // console.log('Login Response:', response);
-    
-            // accessトークンが存在するか確認し、存在しない場合はエラーメッセージを表示
             if (response && response.access) {
                 localStorage.setItem('access_token', response.access); // ログイン成功時にaccessトークンを保存
                 localStorage.setItem('refresh_token', response.refresh); // refreshトークンも保存

@@ -1,60 +1,41 @@
 /** @type {import('next').NextConfig} */
 export default {
-  reactStrictMode: true, // ReactのStrictモードを有効化
+  reactStrictMode: true,
 
-  // 画像のドメイン許可設定
   images: {
-    domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co'], // 許可された画像ドメイン
+    domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co', 'mdbcdn.b-cdn.net'],
   },
 
-  // 1. リダイレクト設定 (HTTPをHTTPSにリダイレクト)
-  async redirects() {
+  async headers() {
     return [
       {
         source: '/(.*)',
-        has: [{ type: 'host', value: 'example.com' }], // ドメイン名に合わせて変更
-        destination: 'https://example.com/:path*', // HTTPSにリダイレクト
-        permanent: true,
-      },
-    ];
-  },
-
-  // 2. セキュリティヘッダーの設定
-  async headers() {
-    return [
-      {
-        source: '/(.*)', // 全てのルートに対して適用
         headers: [
-          { key: 'X-Frame-Options', value: 'DENY' },  // クリックジャッキング対策
-          { key: 'X-Content-Type-Options', value: 'nosniff' },  // MIMEタイプスニッフィング防止
-          { key: 'X-XSS-Protection', value: '1; mode=block' },  // XSS攻撃対策
-          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },  // HSTS (HTTPSの強制)
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },  // リファラーポリシー
-          { key: 'Permissions-Policy', value: 'geolocation=(self), microphone=()' },  // 権限ポリシー
-          { 
-            key: 'Content-Security-Policy',  // Content Security Policy (CSP)
-            value: "default-src 'self'; script-src 'self' https://trusted-cdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';",
-          },
-        ],
-      },
-    ];
-  },
-
-  // 3. キャッシュ制御
-  async headers() {
-    return [
-      {
-        source: '/(.*)', // 全てのルートに適用
-        headers: [
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'geolocation=(self), microphone=()' },
           {
-            key: 'Cache-Control', // キャッシュポリシー
-            value: 'public, max-age=31536000, immutable', // 長期間キャッシュ
+            key: 'Content-Security-Policy',
+            value: `
+              default-src 'self';
+              script-src 'self' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
+              style-src 'self' 'unsafe-inline';
+              img-src 'self' data: https://mdbcdn.b-cdn.net;
+              connect-src 'self' https://ubcbuddies.onrender.com;
+              frame-ancestors 'none';
+            `.replace(/\s{2,}/g, ' ').trim(),
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
     ];
   },
 
-  // 4. その他の設定
-  poweredByHeader: false, // "X-Powered-By: Next.js" ヘッダーを削除してNext.jsの存在を隠す
+  poweredByHeader: false,
 };
