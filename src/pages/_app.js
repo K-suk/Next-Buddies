@@ -1,4 +1,3 @@
-// pages/_app.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -6,6 +5,8 @@ import Navbar from '../../components/Navbar';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Script from 'next/script';
+import crypto from 'crypto'; // nonce生成用
+import App from 'next/app'; // Appをインポート
 
 import '../../public/assets/css/style.css';
 
@@ -41,9 +42,10 @@ function MyApp({ Component, pageProps, nonce }) {
     );
 }
 
+// App.getInitialPropsを使用して、初期プロパティを取得
 MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
-    const nonce = appContext.ctx.req.headers['x-csp-nonce'];
+    const nonce = crypto.randomBytes(16).toString('base64');
     return { ...appProps, nonce };
 };
 
