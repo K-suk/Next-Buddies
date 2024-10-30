@@ -62,7 +62,7 @@ export default function Login() {
                                     <img
                                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                                         alt="login form"
-                                        className={`img-fluid ${styles['rounded-image']}`}
+                                        className={`img-fluid`}
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
@@ -76,7 +76,7 @@ export default function Login() {
                                                 />
                                             </div>
 
-                                            <h5 className={`fw-normal mb-3 pb-3 ${styles['login-header']}`}>
+                                            <h5 className={`fw-normal mb-3 pb-3`}>
                                                 Sign into your account
                                             </h5>
 
@@ -87,7 +87,7 @@ export default function Login() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className={`form-control form-control-lg ${styles['input-white']}`}
+                                                    className={`form-control form-control-lg`}
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
                                                     required
                                                 />
@@ -100,7 +100,7 @@ export default function Login() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className={`form-control form-control-lg ${styles['input-white']}`}
+                                                    className={`form-control form-control-lg`}
                                                     placeholder="Password"
                                                     required
                                                 />
