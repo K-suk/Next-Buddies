@@ -1,5 +1,4 @@
-// next.config.mjs
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 const nextConfig = {
   reactStrictMode: true,
