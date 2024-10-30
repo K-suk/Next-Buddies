@@ -38,5 +38,3 @@ export default {
   },
   poweredByHeader: false,
 };
-
-module.exports = nextConfig;
