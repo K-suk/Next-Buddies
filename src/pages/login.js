@@ -120,7 +120,7 @@ export default function Login() {
                                                 Forgot password?
                                             </a>
                                             <p className={`mb-5 pb-lg-2 ${styles.textWhiteLink}`} onClick={handleSignUp}>
-                                                Don&apos;t have an account? <a href="#!" className={styles.textWhiteLink}>Register here</a>
+                                                Don&apos;t have an account? <a href="#!" className={styles['textWhiteLink']}>Register here</a>
                                             </p>
                                         </form>
                                     </div>
