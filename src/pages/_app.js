@@ -5,16 +5,16 @@ import Navbar from '../../components/Navbar';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Script from 'next/script';
-import crypto from 'crypto'; // nonce生成用
 import App from 'next/app'; // Appをインポート
 
 import '../../public/assets/css/style.css';
 
 config.autoAddCss = false;
 
-function MyApp({ Component, pageProps, nonce }) {
+function MyApp({ Component, pageProps }) {
     const router = useRouter();
     const noNavbarPaths = ['/login', '/signup', '/password-reset', '/activate/[uid]/[token]', '/password/reset/confirm/[uid]/[token]'];
+    const nonce = typeof window !== 'undefined' ? window.__NEXT_DATA__.nonce : '';
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -45,8 +45,7 @@ function MyApp({ Component, pageProps, nonce }) {
 // App.getInitialPropsを使用して、初期プロパティを取得
 MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
-    const nonce = crypto.randomBytes(16).toString('base64');
-    return { ...appProps, nonce };
+    return { ...appProps };
 };
 
 export default MyApp;
