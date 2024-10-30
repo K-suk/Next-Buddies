@@ -52,21 +52,21 @@ export default function Login() {
     };
 
     return (
-        <section className={styles['vh-100']}>
-            <div className="container h-100 py-5">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+        <section className={styles.vh100}>
+            <div className={`container ${styles.h100} py-5`}>
+                <div className={`row d-flex justify-content-center align-items-center ${styles.h100}`}>
                     <div className="col col-xl-10">
-                        <div className={`card ${styles['transparent-card']}`}>
+                        <div className={`card ${styles.transparentCard}`}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
                                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                                         alt="login form"
-                                        className={`img-fluid`}
+                                        className="img-fluid"
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                                    <div className="card-body p-4 p-lg-5 text-white">
+                                    <div className={`card-body p-4 p-lg-5 ${styles.textWhite}`}>
                                         <form onSubmit={handleSubmit}>
                                             <div className="d-flex pb-1">
                                                 <img 
@@ -76,7 +76,7 @@ export default function Login() {
                                                 />
                                             </div>
 
-                                            <h5 className={`fw-normal mb-3 pb-3`}>
+                                            <h5 className={`fw-normal mb-3 pb-3 ${styles.textWhite}`}>
                                                 Sign into your account
                                             </h5>
 
@@ -87,7 +87,7 @@ export default function Login() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className={`form-control form-control-lg`}
+                                                    className="form-control form-control-lg"
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
                                                     required
                                                 />
@@ -100,7 +100,7 @@ export default function Login() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className={`form-control form-control-lg`}
+                                                    className="form-control form-control-lg"
                                                     placeholder="Password"
                                                     required
                                                 />
@@ -116,11 +116,11 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className={`small ${styles['text-white-link']}`} onClick={handlePasswordReset}>
+                                            <a className={`small ${styles.textWhiteLink}`} onClick={handlePasswordReset}>
                                                 Forgot password?
                                             </a>
-                                            <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`} onClick={handleSignUp}>
-                                                Don&apos;t have an account? <a href="#!" className={styles['text-white-link']}>Register here</a>
+                                            <p className={`mb-5 pb-lg-2 ${styles.textWhiteLink}`} onClick={handleSignUp}>
+                                                Don&apos;t have an account? <a href="#!" className={styles.textWhiteLink}>Register here</a>
                                             </p>
                                         </form>
                                     </div>

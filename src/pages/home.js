@@ -85,15 +85,15 @@ export default function Home() {
     };
 
     return (
-        <div className={`container ${styles['container-padding-top']}`}>
+        <div className={`container ${styles.container-padding-top}`}>
             <h1 className="text-center">Hi {name}! Click button for best drinking mate</h1>
             <img
                 src="/images/BUDDIES.png"
                 alt="login form"
-                className={`img-fluid mx-auto d-block ${styles['centered-image']}`}
+                className={`img-fluid mx-auto d-block ${styles.centered-image}`}
             />
 
-            <div className={`text-center mb-3 ${styles['select-center']}`}>
+            <div className={`text-center mb-3 ${styles.select-center}`}>
                 <label htmlFor="need">Select what you are looking for:</label>
                 <select 
                     id="need" 
@@ -112,9 +112,9 @@ export default function Home() {
             {errorMessage && <p className="alert alert-danger text-center">{errorMessage}</p>}
 
             {loading ?
-                <button className={`btn btn-danger waves-effect w-md waves-light d-block mx-auto ${styles['btn-large']}`}>Loading...</button>
+                <button className={`btn btn-danger waves-effect w-md waves-light d-block mx-auto ${styles.btn-large}`}>Loading...</button>
             :
-                <button onClick={() => handleAddMatching()} className={`btn btn-danger waves-effect w-md waves-light d-block mx-auto ${styles['btn-large']}`}>Start Matching</button>
+                <button onClick={() => handleAddMatching()} className={`btn btn-danger waves-effect w-md waves-light d-block mx-auto ${styles.btn-large}`}>Start Matching</button>
             }
 
             <UpdateModal

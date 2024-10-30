@@ -32,13 +32,13 @@ export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) 
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Submit Review"
-            className={styles['modal-content']}  // モジュールCSSを使用
+            className={styles.modal-content}  // モジュールCSSを使用
         >
-            <h2 className={styles['text-dark']}>Submit Review</h2>
+            <h2 className={styles.text-dark}>Submit Review</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label className={styles['text-dark']}>Rating:</label>
-                    <select className={`${styles['custom-select']} mb-3`} 
+                    <label className={styles.text-dark}>Rating:</label>
+                    <select className={`${styles.custom-select} mb-3`} 
                         id="inputGroupSelect01" 
                         value={rating}
                         onChange={(e) => setRating(e.target.value)} 
@@ -52,13 +52,13 @@ export default function ReviewModal({ isOpen, onRequestClose, onReviewSubmit }) 
                     </select>
                 </div>
                 {loading?
-                    <button className={`${styles['btn-large']} btn btn-danger mb-3`}>Loading...</button>
+                    <button className={`${styles.btn-large} btn btn-danger mb-3`}>Loading...</button>
                 :
-                    <button type="submit" className={`${styles['btn-large']} btn btn-danger mb-3`}>Submit Review</button>
+                    <button type="submit" className={`${styles.btn-large} btn btn-danger mb-3`}>Submit Review</button>
                 }
                 {message && <p>{message}</p>}
             </form>
-            <button onClick={onRequestClose} className={`${styles['btn-large']} btn`}>×</button>
+            <button onClick={onRequestClose} className={`${styles.btn-large} btn`}>×</button>
         </Modal>
     );
 }
