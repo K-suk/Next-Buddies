@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-const nextConfig = {
+export default {
   reactStrictMode: true,
   images: {
     domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co', 'mdbcdn.b-cdn.net'],
