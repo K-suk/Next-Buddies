@@ -67,8 +67,8 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live;
-              style-src 'self' 'nonce-${nonce}';
+              script-src 'self' nonce-${nonce} https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live;
+              style-src 'self' nonce-${nonce} https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
               img-src 'self' data: https://mdbcdn.b-cdn.net;
               connect-src 'self' https://ubcbuddies.onrender.com;
               frame-ancestors 'none';
