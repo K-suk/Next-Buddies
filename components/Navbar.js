@@ -63,10 +63,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`styles.navbar p-0 fixed-top d-flex flex-row`}>
-      <div className={`styles.navbarBrandWrapper d-flex d-lg-none align-items-center justify-content-center`}>
+    <nav className={`navbar p-0 fixed-top d-flex flex-row`}>
+      <div className={`navbarBrandWrapper d-flex d-lg-none align-items-center justify-content-center`}>
         <Link href={'/home'} legacyBehavior passHref>
-          <a className={styles.navbar}>
+          <a className="navbar">
             <img
               src="/images/logo.svg"
               alt="logo"
@@ -76,12 +76,12 @@ const Navbar = () => {
           </a>
         </Link>
       </div>
-      <div className={`styles.navbarMenuWrapper flex-grow d-flex align-items-stretch`}>
-        <ul className={`navbarNav ${styles.navbarNavRight}`}>
-          <li className={`styles.navItem dropdown`}>
+      <div className={`navbarMenuWrapper flex-grow d-flex align-items-stretch`}>
+        <ul className={`navbarNav navbarNavRight`}>
+          <li className={`navItem dropdown`}>
             <Dropdown>
-              <Dropdown.Toggle as="a" className={styles.navLink}>
-                <div className={styles.navbarProfile}>
+              <Dropdown.Toggle as="a" className="navLink">
+                <div className="navbarProfile">
                   <img
                     src={profile?.profile_image || "assets/images/faces/face15.jpg"}
                     alt="profile"
@@ -102,7 +102,7 @@ const Navbar = () => {
                       <FontAwesomeIcon icon={faUser} className="text-success" />
                     </div>
                   </div>
-                  <div className={styles.previewItemContent}>
+                  <div className="previewItemContent">
                     <p className={`previewSubject mb-1`}>Profile</p>
                   </div>
                 </Dropdown.Item>
