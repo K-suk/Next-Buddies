@@ -63,8 +63,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${styles.navbar} p-0 fixed-top d-flex flex-row`}>
-      <div className={`${styles.navbarBrandWrapper} d-flex d-lg-none align-items-center justify-content-center`}>
+    <nav className={`styles.navbar p-0 fixed-top d-flex flex-row`}>
+      <div className={`styles.navbarBrandWrapper d-flex d-lg-none align-items-center justify-content-center`}>
         <Link href={'/home'} legacyBehavior passHref>
           <a className={styles.navbar}>
             <img
@@ -76,9 +76,9 @@ const Navbar = () => {
           </a>
         </Link>
       </div>
-      <div className={`${styles.navbarMenuWrapper} flex-grow d-flex align-items-stretch`}>
-        <ul className={`${styles.navbarNav} ${styles.navbarNavRight}`}>
-          <li className={`${styles.navItem} dropdown`}>
+      <div className={`styles.navbarMenuWrapper flex-grow d-flex align-items-stretch`}>
+        <ul className={`navbarNav ${styles.navbarNavRight}`}>
+          <li className={`styles.navItem dropdown`}>
             <Dropdown>
               <Dropdown.Toggle as="a" className={styles.navLink}>
                 <div className={styles.navbarProfile}>
@@ -87,45 +87,45 @@ const Navbar = () => {
                     alt="profile"
                     width={30}
                     height={30}
-                    className={`${styles.imgXs} ${styles.roundedCircle}`}
+                    className={`imgXs roundedCircle`}
                   />
-                  <p className={`mb-0 d-none d-sm-block ${styles.navbarProfileName}`}>Menu</p>
+                  <p className={`mb-0 d-none d-sm-block navbarProfileName`}>Menu</p>
                   <FontAwesomeIcon icon={faChevronDown} className="d-none d-sm-block" />
                 </div>
               </Dropdown.Toggle>
-              <Dropdown.Menu align="right" className={`${styles.dropdownMenu}`}>
-                <Dropdown.Item className={`p-3 mb-0 ${styles.dropdownItem}`}>Menu</Dropdown.Item>
+              <Dropdown.Menu align="right" className={`dropdownMenu`}>
+                <Dropdown.Item className={`p-3 mb-0 dropdownItem`}>Menu</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item className={`dropdown-item ${styles.previewItem}`} onClick={handleProfile}>
-                  <div className={styles.previewThumbnail}>
-                    <div className={styles.previewIcon}>
+                <Dropdown.Item className={`dropdown-item previewItem}`} onClick={handleProfile}>
+                  <div className="previewThumbnail">
+                    <div className="previewIcon">
                       <FontAwesomeIcon icon={faUser} className="text-success" />
                     </div>
                   </div>
                   <div className={styles.previewItemContent}>
-                    <p className={`${styles.previewSubject} mb-1`}>Profile</p>
+                    <p className={`previewSubject mb-1`}>Profile</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item className={`dropdown-item ${styles.previewItem}`} onClick={handlePassChange}>
-                  <div className={styles.previewThumbnail}>
-                    <div className={styles.previewIcon}>
+                <Dropdown.Item className={`dropdown-item previewItem`} onClick={handlePassChange}>
+                  <div className="previewThumbnail">
+                    <div className="previewIcon">
                       <FontAwesomeIcon icon={faCog} className="text-primary" />
                     </div>
                   </div>
-                  <div className={styles.previewItemContent}>
-                    <p className={`${styles.previewSubject} mb-1`}>Change<br />Password</p>
+                  <div className="previewItemContent">
+                    <p className={`previewSubject mb-1`}>Change<br />Password</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item className={`dropdown-item ${styles.previewItem}`} onClick={handleLogout}>
-                  <div className={styles.previewThumbnail}>
-                    <div className={styles.previewIcon}>
+                <Dropdown.Item className={`dropdown-item previewItem`} onClick={handleLogout}>
+                  <div className="previewThumbnail">
+                    <div className="previewIcon">
                       <FontAwesomeIcon icon={faSignOutAlt} className="text-danger" />
                     </div>
                   </div>
-                  <div className={styles.previewItemContent}>
-                    <p className={`${styles.previewSubject} mb-1`}>Log out</p>
+                  <div className="previewItemContent">
+                    <p className={`previewSubject mb-1`}>Log out</p>
                   </div>
                 </Dropdown.Item>
               </Dropdown.Menu>
