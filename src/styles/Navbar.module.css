@@ -1,8 +1,10 @@
 /* styles/Navbar.css */
 .navbar-logo {
     margin-left: 75px;
+    padding: 10px;
 }
 
 .navbar-menu-right {
     margin-left: auto;
+    padding-right: 15px;
 }
