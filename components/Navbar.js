@@ -77,7 +77,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={`navbarMenuWrapper flex-grow d-flex align-items-stretch`}>
-        <ul className={`navbarNav navbarNavRight`}>
+        <ul className={`navbarNav ${navbarNavRight}`}>
           <li className={`navItem dropdown`}>
             <Dropdown>
               <Dropdown.Toggle as="a" className="navLink">

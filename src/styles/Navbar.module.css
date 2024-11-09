@@ -1,10 +1,8 @@
 /* styles/Navbar.css */
-.navbar-logo {
+.navbarLogo {
     margin-left: 75px;
-    padding: 10px;
 }
 
-.navbar-menu-right {
+.navbarNavRight {
     margin-left: auto;
-    padding-right: 15px;
 }
