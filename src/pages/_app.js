@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }) {
     useEffect(() => {
         // window.__NEXT_DATA__.nonce から nonce を取得
         const clientNonce = typeof window !== 'undefined' ? window.__NEXT_DATA__.nonce : '';
+        console.log('Nonce from window.__NEXT_DATA__ in _app.js:', clientNonce);
         setNonce(clientNonce);
     }, []);
 

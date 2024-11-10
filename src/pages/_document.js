@@ -6,11 +6,13 @@ class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
     const nonce = crypto.randomBytes(16).toString('base64');
+    console.log('Generated nonce in _document.js:', nonce);
     return { ...initialProps, nonce };
   }
 
   render() {
     const { nonce } = this.props;
+    console.log('Rendering with nonce in _document.js:', nonce);
 
     return (
       <Html>

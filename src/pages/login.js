@@ -9,6 +9,7 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const nonce = useNonce();
+    console.log('Nonce in login.js:', nonce);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
