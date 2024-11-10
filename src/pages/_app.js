@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Script from 'next/script';
 import App from 'next/app';
-import { NonceContext } from '../context/NonceContext';
+import { NonceContext } from '../../context/NonceContext';
 
 config.autoAddCss = false;
 
