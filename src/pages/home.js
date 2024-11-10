@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile, addMatching } from '../../services/api';
 import UpdateModal from '../../components/UpdateModal';
-import styles from '../../src/styles'; // CSSファイルをインポート
+import styles from '../styles/Home.module.css'; // CSSファイルをインポート
 
 export default function Home() {
     const [name, setUsername] = useState('');
