@@ -2,10 +2,12 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import { updateProfile } from '../services/api';
 import styles from '../src/styles/UpdateModal.module.css';  // CSSファイルをインポート
+import { useNonce } from '../context/NonceContext';  // useNonceをインポート
 
 Modal.setAppElement('#__next');
 
 export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate }) {
+    const nonce = useNonce();  // nonceを取得
     const [formData, setFormData] = useState({
         sex: '',
         contact_address: '',
@@ -13,6 +15,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
         bio: '',
     });
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -55,6 +58,14 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
             contentLabel="Submit Update"
             className={styles.modalContent}  // stylesを通してmodal-contentクラスを適用
         >
+            <style nonce={nonce}>
+                {`
+                    .custom-select {
+                        width: 100%;
+                        padding: 8px;
+                    }
+                `}
+            </style>
             <div className={styles.content}>
                 <div className="container">
                     <div className="row">
@@ -114,6 +125,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                     :
                                         <button type="submit" className={`${styles.btnLarge} btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light`}>Submit</button>
                                     }
+                                    {message && <p>{message}</p>}
                                 </form>
                             </div>
                         </div>

@@ -6,13 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faProjectDiagram, faUser, faCog, faSignOutAlt, faThLarge, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { getCurrentMatch, getProfile } from '../services/api';
-import styles from '../src/styles/Navbar.module.css';  // CSSファイルをインポート
+import styles from '../src/styles/Navbar.module.css';
+import { useNonce } from '../context/NonceContext';  // useNonceをインポート
 
 const Navbar = () => {
   const router = useRouter();
+  const nonce = useNonce();  // nonceを取得
   const [isSuperuser, setIsSuperuser] = useState(false);
   const [profile, setProfile] = useState(null);
-  const [matchingStatue, setMatchingStatus] = useState('');
+  const [matchingStatus, setMatchingStatus] = useState('');
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -26,7 +28,7 @@ const Navbar = () => {
     };
 
     const handleRouteChange = (url) => {
-      if (url === '/profile', url === '/home') {
+      if (url === '/profile' || url === '/home') {
         fetchProfile();
       }
     };
@@ -77,7 +79,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={`navbarMenuWrapper flex-grow d-flex align-items-stretch`}>
-        <ul className={`navbarNav ${navbarNavRight}`}>
+        <ul className={`navbarNav ${styles.navbarNavRight}`}>
           <li className={`navItem dropdown`}>
             <Dropdown>
               <Dropdown.Toggle as="a" className="navLink">
@@ -96,7 +98,7 @@ const Navbar = () => {
               <Dropdown.Menu align="right" className={`dropdownMenu`}>
                 <Dropdown.Item className={`p-3 mb-0 dropdownItem`}>Menu</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item className={`dropdown-item previewItem}`} onClick={handleProfile}>
+                <Dropdown.Item className={`dropdown-item previewItem`} onClick={handleProfile}>
                   <div className="previewThumbnail">
                     <div className="previewIcon">
                       <FontAwesomeIcon icon={faUser} className="text-success" />
