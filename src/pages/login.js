@@ -52,11 +52,11 @@ export default function Login() {
     };
 
     return (
-        <section className={styles.vh100}>
-            <div className={`container ${styles.h100} py-5`}>
-                <div className={`row d-flex justify-content-center align-items-center ${styles.h100}`}>
+        <section className={styles['vh100']}>
+            <div className={`container h100 py-5`}>
+                <div className={`row d-flex justify-content-center align-items-center h100`}>
                     <div className="col col-xl-10">
-                        <div className={`card ${styles.transparentCard}`}>
+                        <div className={`card ${styles['transparentCard']}`}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
@@ -66,7 +66,7 @@ export default function Login() {
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                                    <div className={`card-body p-4 p-lg-5 ${styles.textWhite}`}>
+                                    <div className={`card-body p-4 p-lg-5 textWhite`}>
                                         <form onSubmit={handleSubmit}>
                                             <div className="d-flex pb-1">
                                                 <img 
@@ -76,7 +76,7 @@ export default function Login() {
                                                 />
                                             </div>
 
-                                            <h5 className={`fw-normal mb-3 pb-3 ${styles.textWhite}`}>
+                                            <h5 className={`fw-normal mb-3 pb-3 textWhite`}>
                                                 Sign into your account
                                             </h5>
 
@@ -116,10 +116,10 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className={`small ${styles.textWhiteLink}`} onClick={handlePasswordReset}>
+                                            <a className={`small ${styles['textWhiteLink']}`} onClick={handlePasswordReset}>
                                                 Forgot password?
                                             </a>
-                                            <p className={`mb-5 pb-lg-2 ${styles.textWhiteLink}`} onClick={handleSignUp}>
+                                            <p className={`mb-5 pb-lg-2 ${styles['textWhiteLink']}`} onClick={handleSignUp}>
                                                 Don&apos;t have an account? <a href="#!" className={styles['textWhiteLink']}>Register here</a>
                                             </p>
                                         </form>

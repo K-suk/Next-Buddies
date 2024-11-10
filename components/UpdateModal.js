@@ -56,7 +56,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Submit Update"
-            className={styles.modalContent}  // stylesを通してmodal-contentクラスを適用
+            className={styles['modalContent']}  // stylesを通してmodal-contentクラスを適用
         >
             <style nonce={nonce}>
                 {`
@@ -66,27 +66,27 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                     }
                 `}
             </style>
-            <div className={styles.content}>
+            <div className={content}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <div className={`text-center ${styles.cardBox}`}>
-                                <h2 className={styles.cardTitle}>We need this information for matching!</h2>
-                                <form onSubmit={handleSubmit} className={`${styles.memberCard} pb-2`}>
-                                    <div className={styles.formGroup}>
+                            <div className={`text-center ${cardBox}`}>
+                                <h2 className={styles['cardTitle']}>We need this information for matching!</h2>
+                                <form onSubmit={handleSubmit} className={`memberCard pb-2`}>
+                                    <div className='formGroup'>
                                         <select
                                             name="sex"
                                             value={formData.sex}
                                             onChange={handleChange}
                                             required
-                                            className={`${styles.formControlWhite} form-control`}
+                                            className={`${styles['formControlWhite']} form-control`}
                                         >
                                             <option value="">Please choose your sex</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
                                     </div>
-                                    <div className={styles.formGroup}>
+                                    <div className='formGroup'>
                                         <input
                                             type="text"
                                             name="contact_address"
@@ -94,11 +94,11 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             onChange={handleChange}
                                             placeholder="Instagram"
                                             required
-                                            className={`${styles.formControlWhite} form-control`}
+                                            className={`${styles['formControlWhite']} form-control`}
                                             maxLength="50"
                                         />
                                     </div>
-                                    <div className={styles.formGroup}>
+                                    <div className='formGroup'>
                                         <input
                                             type="number"
                                             name="age"
@@ -106,24 +106,24 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                                             onChange={handleChange}
                                             placeholder="Age"
                                             required
-                                            className={`${styles.formControlWhite} form-control`}
+                                            className={`${styles['formControlWhite']} form-control`}
                                             maxLength="5"
                                         />
                                     </div>
-                                    <div className={styles.formGroup}>
+                                    <div className='formGroup'>
                                         <textarea
                                             name="bio"
                                             value={formData.bio}
                                             onChange={handleChange}
                                             placeholder="Bio"
-                                            className={`${styles.formControlWhite} form-control`}
+                                            className={`${styles['formControlWhite']} form-control`}
                                             maxLength="250"
                                         />
                                     </div>
                                     {loading ?
-                                        <button className={`${styles.btnLarge} btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light`}>Loading...</button>
+                                        <button className={`${styles['btnLarge']} btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light`}>Loading...</button>
                                     :
-                                        <button type="submit" className={`${styles.btnLarge} btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light`}>Submit</button>
+                                        <button type="submit" className={`${styles['btnLarge']} btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light`}>Submit</button>
                                     }
                                     {message && <p>{message}</p>}
                                 </form>

@@ -72,14 +72,14 @@ const Navbar = () => {
             <img
               src="/images/logo.svg"
               alt="logo"
-              className={styles.navbarLogo}
+              className={styles['navbarLogo']}
               width={100}
             />
           </a>
         </Link>
       </div>
       <div className={`navbarMenuWrapper flex-grow d-flex align-items-stretch`}>
-        <ul className={`navbarNav ${styles.navbarNavRight}`}>
+        <ul className={`navbarNav ${styles['navbarNavRight']}`}>
           <li className={`navItem dropdown`}>
             <Dropdown>
               <Dropdown.Toggle as="a" className="navLink">
