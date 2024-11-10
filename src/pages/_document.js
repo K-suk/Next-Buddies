@@ -6,15 +6,16 @@ class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
     const nonce = crypto.randomBytes(16).toString('base64');
-    console.log('Generated nonce in _document.js:', nonce);  // サーバーサイドログで確認
-
-    // nonceを初期プロパティに追加
+    console.log('[Server] Generated nonce in _document.js:', nonce);
+    
+    // `nonce`を`pageProps`経由で直接渡すために設定
+    ctx.req.nonce = nonce;  // ctx.reqオブジェクトに追加
     return { ...initialProps, nonce };
   }
 
   render() {
     const { nonce } = this.props;
-    console.log('Rendering with nonce in _document.js:', nonce);  // 再確認のためにログ出力
+    console.log('[Server] Rendering with nonce in _document.js:', nonce);
 
     return (
       <Html>

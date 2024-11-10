@@ -48,8 +48,9 @@ function MyApp({ Component, pageProps }) {
 // getInitialPropsでnonceをpagePropsに追加
 MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
-    const { nonce } = appContext.ctx;  // nonceをappContextから取得
-    console.log('Nonce received in _app.js from _document.js:', nonce);  // サーバーサイドでの確認用ログ
+    const nonce = appContext.ctx.req ? appContext.ctx.req.nonce : 'nein!';
+    console.log(appContext.ctx);
+    console.log('Nonce received in _app.js from _document.js:', nonce);
 
     return { ...appProps, pageProps: { ...appProps.pageProps, nonce } };
 };
