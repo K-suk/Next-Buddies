@@ -116,7 +116,7 @@ export default function Home() {
             :
                 <button onClick={() => handleAddMatching()} className={`btn btn-danger waves-effect w-md waves-light d-block mx-auto ${styles['btn-large']}`}>Start Matching</button>
             }
-
+            
             <UpdateModal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}

@@ -70,7 +70,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <div className={`text-center ${cardBox}`}>
+                            <div className={`text-center cardBox`}>
                                 <h2 className={styles['cardTitle']}>We need this information for matching!</h2>
                                 <form onSubmit={handleSubmit} className={`memberCard pb-2`}>
                                     <div className='formGroup'>
