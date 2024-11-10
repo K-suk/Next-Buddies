@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Script from 'next/script';
 import App from 'next/app';
-import { NonceContext } from '../../context/NonceContext'; // NonceContextをインポート
+import { NonceContext } from '../../context/NonceContext';
 
 import '../../public/assets/css/style.css';
 
@@ -19,12 +19,9 @@ function MyApp({ Component, pageProps }) {
     const [nonce, setNonce] = useState('');
 
     useEffect(() => {
-        // ランダムな nonce を生成してセット
-        const generatedNonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        setNonce(generatedNonce);
-        if (typeof window !== 'undefined') {
-            window.__NEXT_DATA__ = { ...window.__NEXT_DATA__, nonce: generatedNonce };
-        }
+        // window.__NEXT_DATA__.nonce から nonce を取得
+        const clientNonce = typeof window !== 'undefined' ? window.__NEXT_DATA__.nonce : '';
+        setNonce(clientNonce);
     }, []);
 
     useEffect(() => {
@@ -53,7 +50,6 @@ function MyApp({ Component, pageProps }) {
     );
 }
 
-// App.getInitialPropsを使用して、初期プロパティを取得
 MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
     return { ...appProps };
