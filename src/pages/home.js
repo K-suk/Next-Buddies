@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile, addMatching } from '../../services/api';
 import UpdateModal from '../../components/UpdateModal';
-import styles from '../styles/Home.module.css'; // CSSファイルをインポート
+import styles from '../../src/styles'; // CSSファイルをインポート
 
 export default function Home() {
     const [name, setUsername] = useState('');
@@ -83,7 +83,7 @@ export default function Home() {
             setErrorMessage('Failed to update profile. Please try again.');
         }
     };
-    
+
     return (
         <div className={`container ${styles['container-padding-top']}`}>
             <h1 className="text-center">Hi {name}! Click button for best drinking mate</h1>

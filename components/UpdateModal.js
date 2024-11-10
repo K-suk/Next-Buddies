@@ -66,7 +66,7 @@ export default function UpdateModal({ isOpen, onRequestClose, onProfileUpdate })
                     }
                 `}
             </style>
-            <div className={content}>
+            <div>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
