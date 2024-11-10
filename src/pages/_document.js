@@ -10,24 +10,26 @@ class MyDocument extends Document {
   }
 
   render() {
+    const { nonce } = this.props;
+
     return (
       <Html>
         <Head>
           <meta
             httpEquiv="Content-Security-Policy"
-            content={`default-src 'self'; script-src 'self' 'nonce-${this.props.nonce}' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; style-src 'self' 'nonce-${this.props.nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com; img-src 'self' data: https://mdbcdn.b-cdn.net; connect-src 'self' https://ubcbuddies.onrender.com;`}
+            content={`default-src 'self'; script-src 'self' 'nonce-${nonce}' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com; img-src 'self' data: https://mdbcdn.b-cdn.net; connect-src 'self' https://ubcbuddies.onrender.com;`}
           />
           {/* nonceを__NEXT_DATA__に埋め込み、クライアントサイドで使用できるようにします */}
           <script
-            nonce={this.props.nonce}
+            nonce={nonce}
             dangerouslySetInnerHTML={{
-              __html: `window.__NEXT_DATA__ = { nonce: "${this.props.nonce}" }`,
+              __html: `window.__NEXT_DATA__ = { ...window.__NEXT_DATA__, nonce: "${nonce}" };`,
             }}
           />
         </Head>
         <body>
           <Main />
-          <NextScript nonce={this.props.nonce} />
+          <NextScript nonce={nonce} />
         </body>
       </Html>
     );

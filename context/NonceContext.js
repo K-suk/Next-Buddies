@@ -1,16 +1,8 @@
 // context/NonceContext.js
 import { createContext, useContext } from 'react';
 
-// NonceContextを作成
-const NonceContext = createContext();
+export const NonceContext = createContext(null);
 
-// NonceContextを提供するためのカスタムフック
-export const useNonce = () => useContext(NonceContext);
-
-export const NonceProvider = ({ nonce, children }) => {
-    return (
-        <NonceContext.Provider value={nonce}>
-            {children}
-        </NonceContext.Provider>
-    );
-};
+export function useNonce() {
+    return useContext(NonceContext);
+}
