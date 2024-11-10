@@ -4,5 +4,7 @@ import { createContext, useContext } from 'react';
 export const NonceContext = createContext(null);
 
 export function useNonce() {
-    return useContext(NonceContext);
+    const nonce = useContext(NonceContext);
+    console.log('Nonce retrieved from NonceContext:', nonce);  // ログを追加
+    return nonce;
 }

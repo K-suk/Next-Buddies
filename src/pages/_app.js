@@ -1,6 +1,6 @@
 // pages/_app.js
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Navbar from '../../components/Navbar';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -16,17 +16,10 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
     const noNavbarPaths = ['/login', '/signup', '/password-reset', '/activate/[uid]/[token]', '/password/reset/confirm/[uid]/[token]'];
-    const [nonce, setNonce] = useState('');
+    const nonce = pageProps.nonce || '';  // pagePropsからnonceを取得
+    console.log('Nonce passed to NonceContext.Provider in _app.js:', nonce);  // nonceが取得できているか確認
 
     useEffect(() => {
-        // nonceがundefinedでないことを確認
-        if (typeof window !== 'undefined' && window.__NEXT_DATA__.props && window.__NEXT_DATA__.props.nonce) {
-            const clientNonce = window.__NEXT_DATA__.props.nonce;
-            console.log('Nonce from window.__NEXT_DATA__.props in _app.js:', clientNonce);  // クライアントサイドで確認
-            setNonce(clientNonce);
-        } else {
-            console.warn('Nonce not found in window.__NEXT_DATA__.props');
-        }
         if (typeof window !== 'undefined') {
             require('bootstrap/dist/js/bootstrap.bundle.min.js');
         }
@@ -52,9 +45,13 @@ function MyApp({ Component, pageProps }) {
     );
 }
 
+// getInitialPropsでnonceをpagePropsに追加
 MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
-    return { ...appProps };
+    const { nonce } = appContext.ctx;  // nonceをappContextから取得
+    console.log('Nonce received in _app.js from _document.js:', nonce);  // サーバーサイドでの確認用ログ
+
+    return { ...appProps, pageProps: { ...appProps.pageProps, nonce } };
 };
 
 export default MyApp;
