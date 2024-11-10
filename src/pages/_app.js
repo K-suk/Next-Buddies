@@ -19,10 +19,11 @@ function MyApp({ Component, pageProps }) {
     const [nonce, setNonce] = useState('');
 
     useEffect(() => {
-        // window.__NEXT_DATA__.nonce から nonce を取得
-        const clientNonce = typeof window !== 'undefined' ? window.__NEXT_DATA__.nonce : '';
-        console.log('Nonce from window.__NEXT_DATA__ in _app.js:', clientNonce);
-        setNonce(clientNonce);
+        if (typeof window !== 'undefined' && window.__NEXT_DATA__ && window.__NEXT_DATA__.nonce) {
+            const clientNonce = window.__NEXT_DATA__.nonce;
+            console.log('Nonce from window.__NEXT_DATA__ in _app.js:', clientNonce);  // 追加
+            setNonce(clientNonce);
+        }
     }, []);
 
     useEffect(() => {

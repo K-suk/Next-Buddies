@@ -6,13 +6,13 @@ class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
     const nonce = crypto.randomBytes(16).toString('base64');
-    console.log('Generated nonce in _document.js:', nonce);
+    console.log('Generated nonce in _document.js:', nonce);  // 追加
     return { ...initialProps, nonce };
   }
 
   render() {
     const { nonce } = this.props;
-    console.log('Rendering with nonce in _document.js:', nonce);
+    console.log('Rendering with nonce in _document.js:', nonce);  // 追加
 
     return (
       <Html>
@@ -25,7 +25,10 @@ class MyDocument extends Document {
           <script
             nonce={nonce}
             dangerouslySetInnerHTML={{
-              __html: `window.__NEXT_DATA__ = { ...window.__NEXT_DATA__, nonce: "${nonce}" };`,
+              __html: `
+                if (!window.__NEXT_DATA__) window.__NEXT_DATA__ = {};
+                window.__NEXT_DATA__.nonce = "${nonce}";
+              `,
             }}
           />
         </Head>
