@@ -2,7 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Script from 'next/script';
