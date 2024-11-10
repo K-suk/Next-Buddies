@@ -15,7 +15,7 @@ class MyDocument extends Document {
         <Head>
           <meta
             httpEquiv="Content-Security-Policy"
-            content={`default-src 'self'; script-src 'self' 'nonce-${this.props.nonce}'; style-src 'self' 'nonce-${this.props.nonce}'; img-src 'self' data:; connect-src 'self';`}
+            content={`default-src 'self'; script-src 'self' 'nonce-${this.props.nonce}' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; style-src 'self' 'nonce-${this.props.nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com; img-src 'self' data: https://mdbcdn.b-cdn.net; connect-src 'self' https://ubcbuddies.onrender.com;`}
           />
           {/* nonceを__NEXT_DATA__に埋め込み、クライアントサイドで使用できるようにします */}
           <script
