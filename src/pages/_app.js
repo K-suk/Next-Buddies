@@ -19,14 +19,14 @@ function MyApp({ Component, pageProps }) {
     const [nonce, setNonce] = useState('');
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && window.__NEXT_DATA__ && window.__NEXT_DATA__.nonce) {
-            const clientNonce = window.__NEXT_DATA__.nonce;
-            console.log('Nonce from window.__NEXT_DATA__ in _app.js:', clientNonce);  // 追加
+        // nonceがundefinedでないことを確認
+        if (typeof window !== 'undefined' && window.__NEXT_DATA__.props && window.__NEXT_DATA__.props.nonce) {
+            const clientNonce = window.__NEXT_DATA__.props.nonce;
+            console.log('Nonce from window.__NEXT_DATA__.props in _app.js:', clientNonce);  // クライアントサイドで確認
             setNonce(clientNonce);
+        } else {
+            console.warn('Nonce not found in window.__NEXT_DATA__.props');
         }
-    }, []);
-
-    useEffect(() => {
         if (typeof window !== 'undefined') {
             require('bootstrap/dist/js/bootstrap.bundle.min.js');
         }

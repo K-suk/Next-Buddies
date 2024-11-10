@@ -21,13 +21,12 @@ class MyDocument extends Document {
             httpEquiv="Content-Security-Policy"
             content={`default-src 'self'; script-src 'self' 'nonce-${nonce}' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com; img-src 'self' data: https://mdbcdn.b-cdn.net; connect-src 'self' https://ubcbuddies.onrender.com;`}
           />
-          {/* nonceを__NEXT_DATA__に埋め込み、クライアントサイドで使用できるようにします */}
           <script
-            nonce={nonce}
             dangerouslySetInnerHTML={{
               __html: `
                 if (!window.__NEXT_DATA__) window.__NEXT_DATA__ = {};
-                window.__NEXT_DATA__.nonce = "${nonce}";
+                if (!window.__NEXT_DATA__.props) window.__NEXT_DATA__.props = {};
+                window.__NEXT_DATA__.props.nonce = "${nonce}";
               `,
             }}
           />
