@@ -9,28 +9,59 @@ export default function Login() {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const nonce = useNonce();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     console.log("Submitting form with data:", formData);
+
+    //     if (!formData.email.endsWith('@student.ubc.ca')) {
+    //         setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
+    //         return;
+    //     }
+
+    //     setLoading(true);
+    //     try {
+    //         const response = await login(formData.email, formData.password);
+    //         console.log("Login response:", response);
+    //         if (response && response.access) {
+    //             localStorage.setItem('access_token', response.access);
+    //             localStorage.setItem('refresh_token', response.refresh);
+    //             setMessage('Login Success: Redirecting to home...');
+    //             router.push('/home');
+    //         } else {
+    //             setMessage('Login failed: Token not received.');
+    //             console.error('Login failed: Token not received.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Login Error:', error.response ? error.response.data : error.message);
+    //         setMessage('Login failed. Please try again.');
+    //     }
+    //     setLoading(false);
+    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("Submitting form with data:", formData); // デバッグ用
+    
         if (!formData.email.endsWith('@student.ubc.ca')) {
             setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
             return;
         }
-
+    
         setLoading(true);
         try {
             const response = await login(formData.email, formData.password);
+            console.log("Login response:", response); // デバッグ用
             if (response && response.access) {
                 localStorage.setItem('access_token', response.access);
                 localStorage.setItem('refresh_token', response.refresh);
                 setMessage('Login Success: Redirecting to home...');
-                router.push('/home');
+                
+                // router.pushの代わりにwindow.location.hrefを使用
+                window.location.href = '/home';
             } else {
                 setMessage('Login failed: Token not received.');
                 console.error('Login failed: Token not received.');
@@ -40,7 +71,7 @@ export default function Login() {
             setMessage('Login failed. Please try again.');
         }
         setLoading(false);
-    };
+    };    
 
     const handlePasswordReset = () => {
         router.push('/password-reset');
@@ -115,11 +146,11 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className={`small ${styles['text-white-link']}`} onClick={handlePasswordReset}>
+                                            <a href="/password-reset" className={`small ${styles['text-white-link']}`}>
                                                 Forgot password?
                                             </a>
-                                            <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`} onClick={handleSignUp}>
-                                                Don&apos;t have an account? <span className={`${styles['text-white-link']}`}>Register here</span>
+                                            <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`}>
+                                                Don&apos;t have an account? <a href="/signup" className={`${styles['text-white-link']}`}>Register here</a>
                                             </p>
                                         </form>
                                     </div>

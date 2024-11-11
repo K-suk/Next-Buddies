@@ -22,7 +22,7 @@ class MyDocument extends Document {
 
     return (
       <Html>
-        <Head>
+        <Head nonce={nonce}>
           <meta httpEquiv="Content-Security-Policy" content={csp} />
         </Head>
         <body>
