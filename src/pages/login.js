@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { login } from '../../services/api';
 import { useNonce } from '../../context/NonceContext';
 import styles from '../styles/Login.module.css';
+import Link from 'next/link';
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -146,11 +147,14 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a href="/password-reset" className={`small ${styles['text-white-link']}`}>
-                                                Forgot password?
-                                            </a>
+                                            <Link href="/password-reset" passHref>
+                                                <p className={`small ${styles['text-white-link']}`}>Forgot password?</p>
+                                            </Link>
                                             <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`}>
-                                                Don&apos;t have an account? <a href="/signup" className={`${styles['text-white-link']}`}>Register here</a>
+                                                Don&apos;t have an account?{' '}
+                                                <Link href="/signup" passHref>
+                                                    <span className={`${styles['text-white-link']}`}>Register here</span>
+                                                </Link>
                                             </p>
                                         </form>
                                     </div>
