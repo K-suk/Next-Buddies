@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps, nonce }) {
 
 MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
-  const nonce = appContext.ctx.req ? appContext.ctx.req.nonce : '';
+  const nonce = appContext.ctx.req.headers['x-nonce'] || '';
   return { ...appProps, pageProps: { ...appProps.pageProps, nonce } };
 };
 
