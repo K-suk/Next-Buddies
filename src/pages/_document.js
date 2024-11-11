@@ -16,7 +16,7 @@ class MyDocument extends Document {
       default-src 'self';
       script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; 
       style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
-      img-src 'self' data:;
+      img-src 'self' data: https://mdbcdn.b-cdn.net;
       connect-src 'self' https://ubcbuddies.onrender.com;
     `.replace(/\s{2,}/g, ' ').trim(); // スペースを調整
 

@@ -14,7 +14,6 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps, nonce }) {
   const router = useRouter();
   const noNavbarPaths = ['/login', '/signup', '/password-reset', '/activate/[uid]/[token]', '/password/reset/confirm/[uid]/[token]'];
-  console.log('Nonce passed to NonceContext.Provider in _app.js:', nonce);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -43,6 +42,7 @@ function MyApp({ Component, pageProps, nonce }) {
 MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
   const nonce = appContext.ctx.req.headers['x-nonce'] || '';
+  console.log(`nonce: ${nonce}`);
   return { ...appProps, pageProps: { ...appProps.pageProps, nonce } };
 };
 
