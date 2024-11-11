@@ -128,41 +128,6 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            <style jsx nonce={nonce}>{`
-                .vh-100 {
-                    height: 100vh;
-                    background: linear-gradient(to bottom, #000066 0%, #cc00cc 100%);
-                }
-
-                .transparent-card {
-                    background-color: transparent;
-                    border: none;
-                }
-
-                .input-white {
-                    color: white !important;
-                    background-color: transparent;
-                    border-color: rgba(255, 255, 255, 0.3);
-                }
-
-                .input-white:focus {
-                    color: white !important;
-                    background-color: transparent;
-                    border-color: rgba(255, 255, 255, 0.5);
-                    outline: none;
-                    box-shadow: none;
-                }
-
-                .input-white::placeholder {
-                    color: rgba(255, 255, 255, 0.7);
-                }
-
-                .text-white-link {
-                    color: #FFFFFF;
-                    cursor: pointer;
-                    text-decoration: none;
-                }
-            `}</style>
         </section>
     );
 }
