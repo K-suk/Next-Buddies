@@ -22,11 +22,8 @@ function MyApp({ Component, pageProps, nonce }) {
 
   return (
     <NonceContext.Provider value={nonce}>
-      <Script id="next-webpack" src="/_next/static/chunks/webpack.js" strategy="beforeInteractive" nonce={nonce} />
-      <Script id="next-framework" src="/_next/static/chunks/framework.js" strategy="beforeInteractive" nonce={nonce} />
-      <Script id="next-main" src="/_next/static/chunks/main.js" strategy="beforeInteractive" nonce={nonce} />
-      <Script id="next-app" src="/_next/static/chunks/pages/_app.js" strategy="beforeInteractive" nonce={nonce} />
-
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js" strategy="beforeInteractive" nonce={nonce}></Script>
+      <Script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js" strategy="beforeInteractive" nonce={nonce}></Script>
       {!noNavbarPaths.includes(router.pathname) && <Navbar />}
       <Component {...pageProps} />
     </NonceContext.Provider>
@@ -35,8 +32,12 @@ function MyApp({ Component, pageProps, nonce }) {
 
 MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
-  const nonce = appContext.ctx.req.headers['x-nonce'] || '';
+  
+  // reqが存在する場合にのみnonceを取得
+  const nonce = appContext.ctx.req ? appContext.ctx.req.headers['x-nonce'] || '' : '';
   console.log(`nonce: ${nonce}`);
+  console.log(appContext.ctx.req);
+  
   return { ...appProps, pageProps: { ...appProps.pageProps, nonce } };
 };
 
