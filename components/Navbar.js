@@ -6,6 +6,7 @@ import { faUser, faCog, faSignOutAlt, faChevronDown } from '@fortawesome/free-so
 import Dropdown from 'react-bootstrap/Dropdown';
 import { getProfile } from '../services/api';
 import { useNonce } from '../context/NonceContext';
+import styles from '../src/styles/Navbar.module.css';
 
 const Navbar = () => {
   const router = useRouter();
@@ -41,14 +42,14 @@ const Navbar = () => {
             <img
               src="/images/logo.svg"
               alt="logo"
-              className="navbarLogo"
+              className={`${styles['navbarLogo']}`}
               width={100}
             />
           </a>
         </Link>
       </div>
       <div className="navbarMenuWrapper flex-grow d-flex align-items-stretch">
-        <ul className="navbarNav navbarNavRight">
+        <ul className={`navbarNav ${style['navbarNavRight']}`}>
           <li className="navItem dropdown">
             <Dropdown>
               <Dropdown.Toggle as="a" className="navLink">
@@ -90,15 +91,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <style jsx nonce={nonce}>{`
-        .navbarLogo {
-          margin-left: 75px;
-        }
-
-        .navbarNavRight {
-          margin-left: auto;
-        }
-      `}</style>
     </nav>
   );
 };

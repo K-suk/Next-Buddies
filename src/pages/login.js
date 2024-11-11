@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '../../services/api';
 import { useNonce } from '../../context/NonceContext';
+import styles from '../styles/Login.module.css';
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -50,11 +51,11 @@ export default function Login() {
     };
 
     return (
-        <section className="vh-100">
+        <section className={`${styles['vh-100']}`}>
             <div className="container h-100 py-5">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
-                        <div className="card transparent-card">
+                        <div className={`card ${styles['transparent-card']}`}>
                             <div className="row g-0">
                                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
@@ -85,7 +86,7 @@ export default function Login() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${style['input-white']}`}
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
                                                     required
                                                 />
@@ -98,7 +99,7 @@ export default function Login() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className="form-control form-control-lg input-white"
+                                                    className={`form-control form-control-lg ${style['input-white']}`}
                                                     placeholder="Password"
                                                     required
                                                 />
@@ -114,11 +115,11 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className="small text-white-link" onClick={handlePasswordReset}>
+                                            <a className={`small ${style['text-white-link']}`} onClick={handlePasswordReset}>
                                                 Forgot password?
                                             </a>
-                                            <p className="mb-5 pb-lg-2 text-white-link" onClick={handleSignUp}>
-                                                Don&apos;t have an account? <span className="text-white-link">Register here</span>
+                                            <p className={`mb-5 pb-lg-2 ${style['text-white-link']}`} onClick={handleSignUp}>
+                                                Don&apos;t have an account? <span className={`${style['text-white-link']}`}>Register here</span>
                                             </p>
                                         </form>
                                     </div>
