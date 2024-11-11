@@ -86,7 +86,7 @@ export default function Login() {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className={`form-control form-control-lg ${style['input-white']}`}
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Student Email (CWL@student.ubc.ca)"
                                                     required
                                                 />
@@ -99,7 +99,7 @@ export default function Login() {
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
-                                                    className={`form-control form-control-lg ${style['input-white']}`}
+                                                    className={`form-control form-control-lg ${styles['input-white']}`}
                                                     placeholder="Password"
                                                     required
                                                 />
@@ -115,11 +115,11 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <a className={`small ${style['text-white-link']}`} onClick={handlePasswordReset}>
+                                            <a className={`small ${styles['text-white-link']}`} onClick={handlePasswordReset}>
                                                 Forgot password?
                                             </a>
-                                            <p className={`mb-5 pb-lg-2 ${style['text-white-link']}`} onClick={handleSignUp}>
-                                                Don&apos;t have an account? <span className={`${style['text-white-link']}`}>Register here</span>
+                                            <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`} onClick={handleSignUp}>
+                                                Don&apos;t have an account? <span className={`${styles['text-white-link']}`}>Register here</span>
                                             </p>
                                         </form>
                                     </div>
