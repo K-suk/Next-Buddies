@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps, nonce }) {
     <NonceContext.Provider value={nonce}>
       {!noNavbarPaths.includes(router.pathname) && <Navbar />}
       <Component {...pageProps} />
-      <Script
+      {/* <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"
         strategy="beforeInteractive"
         nonce={nonce}
@@ -34,7 +34,8 @@ function MyApp({ Component, pageProps, nonce }) {
         src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"
         strategy="beforeInteractive"
         nonce={nonce}
-      />
+      /> */}
+      <Script src="public/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive" nonce={nonce} />
     </NonceContext.Provider>
   );
 }
