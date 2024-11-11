@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps, nonce }) {
         strategy="beforeInteractive"
         nonce={nonce}
       /> */}
-      <Script src="public/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive" nonce={nonce} />
+      <Script src="../../public/bootstrap-5.1.3-dist/js/bootstrap.bundle" strategy="beforeInteractive" nonce={nonce} />
     </NonceContext.Provider>
   );
 }
