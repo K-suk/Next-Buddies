@@ -14,7 +14,7 @@ class MyDocument extends Document {
     const { nonce } = this.props;
     const csp = `
       default-src 'self';
-      script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; 
+      script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
       style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
       img-src 'self' data: https://mdbcdn.b-cdn.net;
       connect-src 'self' https://ubcbuddies.onrender.com;
