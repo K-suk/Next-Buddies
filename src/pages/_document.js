@@ -12,11 +12,10 @@ class MyDocument extends Document {
 
   render() {
     const { nonce } = this.props;
-    console.log(nonce);
     const csp = `
       default-src 'self';
-      script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:; 
-      style-src 'self' 'nonce-${nonce}' https:;
+      script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://vercel.live; 
+      style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
       img-src 'self' data:;
       connect-src 'self' https://ubcbuddies.onrender.com;
     `.replace(/\s{2,}/g, ' ').trim(); // スペースを調整
