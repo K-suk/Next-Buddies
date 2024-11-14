@@ -129,7 +129,7 @@ export default function ProfileUpdate() {
                                 <h1>Edit Profile</h1>
                                 <div className="thumb-lg member-thumb mx-auto">
                                     <Image
-                                        src={previewImage || "assets/images/faces/face15.jpg"}
+                                        src={previewImage || "/assets/images/faces/face15.jpg"}
                                         className={`rounded-circle img-thumbnail ${styles['profile-image']}`}
                                         alt="profile-image"
                                         width={240}
@@ -145,7 +145,7 @@ export default function ProfileUpdate() {
                                         className={`form-control ${styles['input-white']}`}
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group pt-2">
                                     <input
                                         type="text"
                                         name="name"
@@ -157,7 +157,7 @@ export default function ProfileUpdate() {
                                         maxLength="50"
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group pt-2">
                                     <input
                                         type="text"
                                         name="contact_address"
@@ -169,7 +169,7 @@ export default function ProfileUpdate() {
                                         maxLength="50"
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group pt-2">
                                     <input
                                         type="number"
                                         name="age"
@@ -181,7 +181,7 @@ export default function ProfileUpdate() {
                                         maxLength="5"
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group pt-2">
                                     <textarea
                                         name="bio"
                                         value={formData.bio}
@@ -192,9 +192,9 @@ export default function ProfileUpdate() {
                                     />
                                 </div>
                                 {loading ?
-                                    <button className={`btn btn-danger mt-3 waves-effect w-md waves-light ${styles['btn-large']}`}>Loading...</button>
+                                    <button className={`btn btn-danger mt-4 waves-effect w-md waves-light ${styles['btn-large']}`}>Loading...</button>
                                     :
-                                    <button type="submit" className={`btn btn-danger mt-3 waves-effect w-md waves-light ${styles['btn-large']}`}>Update Profile</button>
+                                    <button type="submit" className={`btn btn-danger mt-4 waves-effect w-md waves-light ${styles['btn-large']}`}>Update Profile</button>
                                 }
                                 {message && <p className="alert alert-info">{message}</p>}
                             </form>

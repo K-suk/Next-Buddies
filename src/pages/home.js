@@ -85,7 +85,7 @@ export default function Home() {
     };
 
     return (
-        <div className={`container ${styles['container-padding-top']}`}>
+        <div className={`${styles['home-container']}`}>
             <h1 className="text-center">Hi {name}! Click button for best drinking mate</h1>
             <img
                 src="/images/BUDDIES.png"
@@ -99,7 +99,7 @@ export default function Home() {
                     id="need" 
                     value={need} 
                     onChange={(e) => setNeed(e.target.value)} 
-                    className="form-select"
+                    className={`form-select`}
                 >
                     <option value="">-- Select --</option>
                     <option value="gym">Gym Buddy (Same gender)</option>

@@ -8,13 +8,13 @@
 }
 
 .input-white {
-    color: white;
+    color: black;
 }
 
 .btn-large {
-    padding: 20px 60px;
+    padding: 15px 60px;
     font-size: 24px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* あとから変更したやつ */

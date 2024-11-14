@@ -77,7 +77,7 @@ export default function SignUp() {
                                     />
                                 </div>
                                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                                    <div className="card-body text-white">
+                                    <div className="card-body p-4 p-lg-5 text-white">
                                         <form onSubmit={handleSubmit}>
                                             <div className="d-flex align-items-center pb-1">
                                                 <img 

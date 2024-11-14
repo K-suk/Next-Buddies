@@ -62,8 +62,8 @@ export default function CurrentMatch() {
                                             <Image
                                                 src={match && match.profile_image 
                                                     ? `${supabaseBaseUrl}${match.profile_image.split('/').pop()}`
-                                                    : "assets/images/faces/face15.jpg"}
-                                                className={`${styles['profile-image']} img-thumbnail`}
+                                                    : "/assets/images/faces/face15.jpg"}
+                                                className={`${styles['profile-image']} img-thumbnail rounded-circle`}
                                                 alt="profile-image"
                                                 width={240}
                                                 height={240}

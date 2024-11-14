@@ -1,74 +1,51 @@
-.card-box {
-    padding: 20px;
-    border-radius: 3px;
-    margin-bottom: 30px;
-    background-color: #fff;
-}
-
-.social-links li a {
-    border-radius: 50%;
-    color: rgba(121, 121, 121, .8);
-    display: inline-block;
-    height: 30px;
-    line-height: 27px;
-    border: 2px solid rgba(121, 121, 121, .5);
-    text-align: center;
-    width: 30px
-}
-
-.social-links li a:hover {
-    color: #797979;
-    border: 2px solid #797979
-}
-.thumb-lg {
-    height: 88px;
-    width: 88px;
-}
-.img-thumbnail {
-    padding: .25rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: .25rem;
-    max-width: 100%;
-    height: auto;
-}
-.text-pink {
-    color: #ff679b!important;
-}
-.btn-rounded {
-    border-radius: 2em;
-}
-.text-muted {
-    color: #98a6ad!important;
-}
-
-.profile-image {
-    max-width: 240px; /* 最大サイズを設定 */
-    aspect-ratio: 1 / 1; /* 1:1の比率を指定 */
-    object-fit: cover; /* 画像が枠に収まるようにカバー */
-    border-radius: 50%; /* 円形にする場合 */
-}
-
-/* ここから追加しました。 */
-.content-margin-top {
+.contentMarginTop {
     margin-top: 100px;
 }
 
-.profile-image {
-    aspect-ratio: 1 / 1;
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.text-white-large {
+.cardBox {
+    padding: 30px;
+    border-radius: 10px;
     color: white;
-    font-size: 24px;
 }
 
-.mt-negative {
+.memberCard {
+    background-color: transparent;
+}
+
+.memberThumb {
+    margin-bottom: 20px;
+}
+
+.profileImage {
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+}
+
+.profileName {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.textWhiteLarge {
+    font-size: 24px;
+    margin: 0;
+}
+
+.mtNegative {
     margin-top: -15px;
 }
 
-.btn-large {
-    padding: 20px 60px;
+.btnLarge {
+    padding: 15px 60px;
     font-size: 24px;
-    border-radius: 5px;
+    border-radius: 10px;
 }

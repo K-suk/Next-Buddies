@@ -101,16 +101,14 @@ export const updateProfile = async (profileData) => {
   try {
     const headers = {
       ...getAuthHeaders().headers,
-      'Content-Type': 'multipart/form-data', // ファイルを送信するためにmultipart/form-dataに設定
+      'Content-Type': 'multipart/form-data',
     };
 
-    // プロファイル更新リクエストを送信
     const response = await api.patch('/auth/users/me/', profileData, {
       headers: headers,
     });
     return response.data;
   } catch (error) {
-    // 401エラーが発生した場合、トークンをリフレッシュして再試行
     if (error.response && error.response.status === 401) {
       const newAccessToken = await refreshToken();
       if (newAccessToken) {
@@ -118,11 +116,11 @@ export const updateProfile = async (profileData) => {
           ...getAuthHeaders().headers,
           'Content-Type': 'multipart/form-data',
         };
-        // トークンのリフレッシュ後に再試行
+
         return await api.patch('/auth/users/me/', profileData, { headers }).then((response) => response.data);
       }
     }
-    // その他のエラーの場合はエラーメッセージを出力してスロー
+
     console.error('Error updating profile:', error.response ? error.response.data : error.message);
     throw error;
   }
@@ -150,7 +148,6 @@ export const getCurrentMatch = async () => {
 
 export const submitReview = async (rating) => {
   try {
-      console.log('Sending rating to server:', rating); // ここでサーバーに送信される前のratingを確認
       const response = await api.post('/match/submit-review/', { rating });
       return response.data.new_average_rating;
   } catch (error) {

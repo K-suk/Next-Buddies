@@ -32,7 +32,7 @@ export default function PasswordResetRequest() {
 
     return (
         <section className={styles['vh-100']}>
-            <div className={`container ${styles['container-margin-top']}`}>
+            <div className={`container ${styles['container-padding-top']}`}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col col-xl-10">
                         <div className={`card ${styles['transparent-card']}`}>

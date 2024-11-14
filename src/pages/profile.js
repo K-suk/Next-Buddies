@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getProfile } from '../../services/api';
 import Image from 'next/image';
-import Link from 'next/link';
-import styles from '../styles/Profile.module.css'; // CSSファイルをインポート
+import styles from '../styles/profile.module.css';
 
 export default function Profile() {
     const [profile, setProfile] = useState(null);
@@ -45,29 +44,35 @@ export default function Profile() {
     };
 
     return (
-        <div className={`content ${styles['content-margin-top']}`}>
+        <div className={`content ${styles['contentMarginTop']}`}>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <div className="text-center card-box">
-                            <div className="member-card pt-2 pb-2">
+                        <div className={`text-center card-box ${styles['cardBox']}`}>
+                            <div className={`member-card pt-2 pb-2 ${styles['memberCard']}`}>
                                 {profile ? (
                                     <>
-                                        <div className="thumb-lg member-thumb mx-auto">
+                                        <div className={`thumb-lg member-thumb mx-auto ${styles['memberThumb']}`}>
                                             <Image 
-                                                src={profile.profile_image || "assets/images/faces/face15.jpg"} 
-                                                className={`${styles['profile-image']}`} 
+                                                src={profile.profile_image || "/assets/images/faces/face15.jpg"} 
+                                                className={`rounded-circle ${styles['profileImage']}`} 
                                                 alt="profile-image"
                                                 width={240}
                                                 height={240}
                                             />
                                         </div>
-                                        <h1 className="py-3">{profile.name}</h1>
-                                        <p className={`${styles['text-white-large']}`}>Age: {profile.age}</p>
-                                        <p className={`${styles['text-white-large']} ${styles['mt-negative']}`}>Sex: {profile.sex}</p>
-                                        <p className={`${styles['text-white-large']} ${styles['mt-negative']}`}>Instagram: {profile.contact_address}</p>
-                                        <p className={`${styles['text-white-large']} ${styles['mt-negative']}`}>Bio: {profile.bio}</p>
-                                        <button type="button" className={`btn btn-danger mt-3 waves-effect w-md waves-light ${styles['btn-large']}`} onClick={handleEdit}>Edit Profile</button>
+                                        <h1 className={`py-3 ${styles['profileName']}`}>{profile.name}</h1>
+                                        <p className={`pt-3 ${styles['textWhiteLarge']}`}>Age: {profile.age}</p>
+                                        <p className={`pt-3 ${styles['textWhiteLarge']} ${styles.mtNegative}`}>Sex: {profile.sex}</p>
+                                        <p className={`pt-3 ${styles['textWhiteLarge']} ${styles.mtNegative}`}>Instagram: {profile.contact_address}</p>
+                                        <p className={`pt-3 ${styles['textWhiteLarge']} ${styles.mtNegative}`}>Bio: {profile.bio}</p>
+                                        <button 
+                                            type="button" 
+                                            className={`btn btn-danger mt-3 waves-effect w-md waves-light ${styles['btnLarge']}`} 
+                                            onClick={handleEdit}
+                                        >
+                                            Edit Profile
+                                        </button>
                                     </>
                                 ) : (
                                     <p>No profile data found.</p>

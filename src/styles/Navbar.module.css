@@ -1,8 +1,87 @@
-/* styles/Navbar.css */
-.navbarLogo {
-    margin-left: 75px;
+.navbar {
+    color: white;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* 中央揃えにする */
+    align-items: center;
+    width: 100%;
 }
 
-.navbarNavRight {
+.navbarBrandWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarMenuWrapper {
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
     margin-left: auto;
+}
+
+.navbarLogo {
+    margin-left: 15px;
+}
+
+.navbar-nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+
+.img-xs {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.navbarProfileName {
+    margin-right: 8px;
+    display: none;
+}
+
+.navbarProfileName.d-sm-block {
+    display: inline-block;
+}
+
+.dropdownMenu {
+    background-color: black;
+    border: none;
+}
+
+.dropdownItem {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.dropdownItem .previewIcon {
+    margin-right: 10px;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+.text-danger {
+    color: #dc3545;
 }

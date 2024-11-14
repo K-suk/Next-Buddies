@@ -1,25 +1,61 @@
 /* Update Modal Custom Styles */
-.modal-content {
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto; /* モーダル全体が画面に収まらない場合、スクロール可能にする */
+}
+
+.modalContent {
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    background-color: #ffffff;
     border-radius: 10px;
-    width: 80%;
+    padding: 20px;
+    outline: none;
+    overflow: auto;
+    max-height: 90vh; /* モーダルの最大高さを制限して、画面外にはみ出さないようにする */
 }
 
-.card-title {
+.cardTitle {
     color: black;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.form-control-white {
+.formControl {
+    color: white;
+    background-color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.formControl:focus {
+    color: white;
+    background-color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.formControl::placeholder {
     color: white;
 }
 
-.btn-large {
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.btnLarge {
     padding: 20px 60px;
     font-size: 24px;
     border-radius: 10px;
+    width: 100%;
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '../../services/api';
-import { useNonce } from '../../context/NonceContext';
 import styles from '../styles/Login.module.css';
 import Link from 'next/link';
 
@@ -45,7 +44,6 @@ export default function Login() {
     // };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submitting form with data:", formData); // デバッグ用
     
         if (!formData.email.endsWith('@student.ubc.ca')) {
             setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
@@ -55,7 +53,6 @@ export default function Login() {
         setLoading(true);
         try {
             const response = await login(formData.email, formData.password);
-            console.log("Login response:", response); // デバッグ用
             if (response && response.access) {
                 localStorage.setItem('access_token', response.access);
                 localStorage.setItem('refresh_token', response.refresh);
@@ -147,13 +144,13 @@ export default function Login() {
 
                                             {message && <p>{message}</p>}
 
-                                            <Link href="/password-reset" passHref>
-                                                <p className={`small ${styles['text-white-link']}`}>Forgot password?</p>
+                                            <Link href="/password-reset" legacyBehavior passHref>
+                                                <a className={`small ${styles['text-white-link']}`}>Forgot password?</a>
                                             </Link>
                                             <p className={`mb-5 pb-lg-2 ${styles['text-white-link']}`}>
                                                 Don&apos;t have an account?{' '}
-                                                <Link href="/signup" passHref>
-                                                    <span className={`${styles['text-white-link']}`}>Register here</span>
+                                                <Link href="/signup" legacyBehavior passHref>
+                                                    <a className={`${styles['text-white-link']}`}>Register here</a>
                                                 </Link>
                                             </p>
                                         </form>

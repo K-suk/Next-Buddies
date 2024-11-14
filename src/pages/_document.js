@@ -12,13 +12,23 @@ class MyDocument extends Document {
 
   render() {
     const { nonce } = this.props;
-    const csp = `
-      default-src 'self';
-      script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-      style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
-      img-src 'self' data: https://mdbcdn.b-cdn.net;
-      connect-src 'self' https://ubcbuddies.onrender.com;
-    `.replace(/\s{2,}/g, ' ').trim(); // スペースを調整
+    const isDev = process.env.NODE_ENV === 'development';
+
+    const csp = isDev
+      ? `
+        default-src 'self';
+        script-src 'self' 'nonce-${nonce}' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https://mdbcdn.b-cdn.net https://rfljgrsesttopohfkikg.supabase.co;
+        connect-src 'self' https://ubcbuddies.onrender.com https://rfljgrsesttopohfkikg.supabase.co;
+      `.replace(/\s{2,}/g, ' ').trim()
+      : `
+        default-src 'self';
+        script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
+        style-src 'self' 'nonce-${nonce}' https://trusted-cdn.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com;
+        img-src 'self' data: https://mdbcdn.b-cdn.net https://rfljgrsesttopohfkikg.supabase.co;
+        connect-src 'self' https://ubcbuddies.onrender.com https://rfljgrsesttopohfkikg.supabase.co;
+      `.replace(/\s{2,}/g, ' ').trim();
 
     return (
       <Html>

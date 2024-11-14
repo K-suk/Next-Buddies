@@ -1,9 +1,5 @@
-import crypto from 'crypto';
-
-const nonce = crypto.randomBytes(16).toString('base64');
-
 export default {
-  reactStrictMode: true,
+  reactStrictMode: false,  // reactStrictModeを無効化 true in read
   images: {
     domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co', 'mdbcdn.b-cdn.net'],
   },

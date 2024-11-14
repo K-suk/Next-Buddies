@@ -1,6 +1,10 @@
 /* Home Page Styles */
-.container-padding-top {
+.home-container {
     padding-top: 100px;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    width: 100vw;
 }
 
 .centered-image {
@@ -16,7 +20,7 @@
 }
 
 .btn-large {
-    padding: 20px 60px;
+    width: 75%;
     font-size: 24px;
     border-radius: 10px;
     font-weight: bold;
