@@ -1,5 +1,5 @@
 export default {
-  reactStrictMode: false,  // reactStrictModeを無効化 true in read
+  reactStrictMode: false,
   images: {
     domains: ['bootdey.com', 'localhost', 'ubcbuddies.onrender.com', 'rfljgrsesttopohfkikg.supabase.co', 'mdbcdn.b-cdn.net'],
   },

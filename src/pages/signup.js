@@ -18,6 +18,13 @@ export default function SignUp() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const isValidPassword = (password) => {
+        const forbiddenPatterns = [
+            /--/, /;/, /'/, /"/, /\*/, /\bOR\b/i, /\bAND\b/i, /\bUNION\b/i, /\bSELECT\b/i, /\bINSERT\b/i, /\bDELETE\b/i, /\bUPDATE\b/i, /\bDROP\b/i
+        ];
+        return !forbiddenPatterns.some(pattern => pattern.test(password));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -40,6 +47,11 @@ export default function SignUp() {
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordPattern.test(formData.password)) {
             setMessage('Password must be at least 8 characters, include an uppercase letter and a number.');
+            return;
+        }
+
+        if (!isValidPassword(formData.password)) {
+            setMessage('Invalid password format.');
             return;
         }
     

@@ -14,39 +14,23 @@ export default function Login() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     console.log("Submitting form with data:", formData);
+    const isValidPassword = (password) => {
+        const forbiddenPatterns = [
+            /--/, /;/, /'/, /"/, /\*/, /\bOR\b/i, /\bAND\b/i, /\bUNION\b/i, /\bSELECT\b/i, /\bINSERT\b/i, /\bDELETE\b/i, /\bUPDATE\b/i, /\bDROP\b/i
+        ];
+        return !forbiddenPatterns.some(pattern => pattern.test(password));
+    };
 
-    //     if (!formData.email.endsWith('@student.ubc.ca')) {
-    //         setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
-    //         return;
-    //     }
-
-    //     setLoading(true);
-    //     try {
-    //         const response = await login(formData.email, formData.password);
-    //         console.log("Login response:", response);
-    //         if (response && response.access) {
-    //             localStorage.setItem('access_token', response.access);
-    //             localStorage.setItem('refresh_token', response.refresh);
-    //             setMessage('Login Success: Redirecting to home...');
-    //             router.push('/home');
-    //         } else {
-    //             setMessage('Login failed: Token not received.');
-    //             console.error('Login failed: Token not received.');
-    //         }
-    //     } catch (error) {
-    //         console.error('Login Error:', error.response ? error.response.data : error.message);
-    //         setMessage('Login failed. Please try again.');
-    //     }
-    //     setLoading(false);
-    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         if (!formData.email.endsWith('@student.ubc.ca')) {
             setMessage('Only email addresses ending with @student.ubc.ca are allowed.');
+            return;
+        }
+
+        if (!isValidPassword(formData.password)) {
+            setMessage('Invalid password format.');
             return;
         }
     
@@ -58,7 +42,6 @@ export default function Login() {
                 localStorage.setItem('refresh_token', response.refresh);
                 setMessage('Login Success: Redirecting to home...');
                 
-                // router.pushの代わりにwindow.location.hrefを使用
                 window.location.href = '/home';
             } else {
                 setMessage('Login failed: Token not received.');
