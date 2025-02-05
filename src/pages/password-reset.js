@@ -8,10 +8,15 @@ export default function PasswordResetRequest() {
     const [message, setMessage] = useState('');
     const router = useRouter();
 
+    const isValidEmail = (email) => {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@student\.ubc\.ca$/;
+        return emailPattern.test(email);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!email.endsWith('@student.ubc.ca')) {
+        if (!isValidEmail(email)) {
             setMessage('Only UBC student email addresses are allowed.');
             return;
         }

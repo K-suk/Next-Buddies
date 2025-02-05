@@ -37,50 +37,17 @@ export default function ProfileUpdate() {
         fetchUserData();
     }, []);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const isValidInput = (input) => {
+        const forbiddenPatterns = [/--/, /;/, /'/, /"/, /\*/, /\bOR\b/i, /\bAND\b/i, /\bUNION\b/i, /\bSELECT\b/i, /\bINSERT\b/i, /\bDELETE\b/i, /\bUPDATE\b/i, /\bDROP\b/i];
+        return !forbiddenPatterns.some(pattern => pattern.test(input));
     };
 
-    const handleImageChange = async (e) => {
-        const file = e.target.files[0];
-        
-        if (!file) return;
-
-        const allowedTypes = ['image/jpeg', 'image/png'];
-        if (!allowedTypes.includes(file.type)) {
-            setMessage('Only JPG and PNG files are allowed.');
+    const handleChange = (e) => {
+        if (!isValidInput(e.target.value)) {
+            setMessage('Invalid input detected.');
             return;
         }
-
-        try {
-            const { data, error } = await supabase.storage
-                .from('ubc-buddies-profile-images')
-                .upload(`public/${file.name}`, file, {
-                    cacheControl: '3600',
-                    upsert: true,
-                });
-
-            if (error) {
-                console.error('Error uploading image:', error);
-                return;
-            }
-
-            const { data: publicUrlData, error: publicUrlError } = supabase.storage
-                .from('ubc-buddies-profile-images')
-                .getPublicUrl(`public/${file.name}`);
-
-            if (publicUrlError) {
-                console.error('Error getting public URL:', publicUrlError);
-                return;
-            }
-
-            const imageUrl = publicUrlData.publicUrl;
-            setFormData({ ...formData, profile_image: imageUrl });
-            setPreviewImage(imageUrl);
-
-        } catch (err) {
-            console.error("Unexpected error:", err);
-        }
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
@@ -89,6 +56,11 @@ export default function ProfileUpdate() {
         const namePattern = /^[A-Za-z\s]+$/;
         if (!namePattern.test(formData.name)) {
             setMessage('Name can only contain letters and spaces.');
+            return;
+        }
+
+        if (!isValidInput(formData.contact_address) || !isValidInput(formData.bio)) {
+            setMessage('Invalid input detected.');
             return;
         }
 
@@ -141,7 +113,7 @@ export default function ProfileUpdate() {
                                         type="file"
                                         name="profile_image"
                                         accept="image/*"
-                                        onChange={handleImageChange}
+                                        onChange={handleChange}
                                         className={`form-control ${styles['input-white']}`}
                                     />
                                 </div>

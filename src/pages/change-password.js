@@ -19,12 +19,24 @@ export default function ChangePassword() {
         }
     }, [router]);
 
+    const isValidPassword = (password) => {
+        const forbiddenPatterns = [
+            /--/, /;/, /'/, /"/, /\*/, /\bOR\b/i, /\bAND\b/i, /\bUNION\b/i, /\bSELECT\b/i, /\bINSERT\b/i, /\bDELETE\b/i, /\bUPDATE\b/i, /\bDROP\b/i
+        ];
+        return !forbiddenPatterns.some(pattern => pattern.test(password));
+    };
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!isValidPassword(formData.current_password) || !isValidPassword(formData.new_password)) {
+            setMessage('Invalid password format detected.');
+            return;
+        }
 
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordPattern.test(formData.new_password)) {
