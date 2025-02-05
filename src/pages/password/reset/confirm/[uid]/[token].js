@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import api from '../../../../../../services/api';
 import { useRouter } from 'next/router';
-import styles from '../../../../../styles/PasswordResetConfirm.module.css';  // CSSファイルをインポート
+import styles from '../../../../../styles/PasswordResetConfirm.module.css';
 
 export default function PasswordResetConfirm() {
     const [formData, setFormData] = useState({
@@ -14,6 +14,13 @@ export default function PasswordResetConfirm() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
+    const isValidPassword = (password) => {
+        const forbiddenPatterns = [
+            /--/, /;/, /'/, /"/, /\*/, /\bOR\b/i, /\bAND\b/i, /\bUNION\b/i, /\bSELECT\b/i, /\bINSERT\b/i, /\bDELETE\b/i, /\bUPDATE\b/i, /\bDROP\b/i
+        ];
+        return !forbiddenPatterns.some(pattern => pattern.test(password));
+    };
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -22,6 +29,25 @@ export default function PasswordResetConfirm() {
         e.preventDefault();
         setLoading(true);
         const { uid, token } = router.query;
+
+        if (!isValidPassword(formData.new_password) || !isValidPassword(formData.re_new_password)) {
+            setMessage('Invalid password format detected.');
+            setLoading(false);
+            return;
+        }
+
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(formData.new_password)) {
+            setMessage('New password must be at least 8 characters, include an uppercase letter, and a number.');
+            setLoading(false);
+            return;
+        }
+
+        if (formData.new_password !== formData.re_new_password) {
+            setMessage('Passwords do not match.');
+            setLoading(false);
+            return;
+        }
 
         api.post(`/auth/users/reset_password_confirm/`, {
             uid: uid,
